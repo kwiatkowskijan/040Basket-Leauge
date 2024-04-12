@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Graduate&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat&display=swap');
+
+:root {
+    --hover: #00471B;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Lato";
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+    padding: 0 10px;
+    background-color: #EEE1C6;
+}
+
+#logo {
+    width: 10%;
+    text-align: center;
+}
+
+#logo img {
+    width: 100px;
+    height: 85px;
+}
+
+#logo img:hover {
+    opacity: 80%;
+    transition: 0.3s;
+}
+
+.menu {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    align-content: center;
+}
+
+.navlink {
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    margin: 0px 10px;
+    font-weight: bold;
+}
+
+.navlink:hover {
+    color: var(--hover);
+}
+
+.social-menu {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.social-menu a {
+    text-decoration: none;
+    margin: 0px 10px;
+    color: #000;
+}
+
+.toggler {
+    display: none;
+}
+
+.toggleMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    background-color: black;
+}
+
+.toggleNavLink {
+    color: white;
+}
+
+@media (max-width: 767.98px) {
+    .menu {
+        display: none;
+    }
+
+    .social-menu {
+        display: none;
+    }
+
+    #logo {
+        width: 20%;
+    }
+
+    .navigation {
+        justify-content: space-between;
+    }
+
+    .toggler {
+        display: block;
+        width: 20%;
+        text-align: center;
+    }
+}
+
+.front-page-container {
+    width: 100%;
+    height: 200vh;
+    /* background-color: aqua; */
+}
