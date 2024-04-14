@@ -22,6 +22,9 @@ html {
     align-content: center;
     padding: 0 10px;
     background-color: #EEE1C6;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 #logo {
@@ -73,12 +76,22 @@ html {
     color: #000;
 }
 
-.toggler {
-    display: none;
+.social-menu a:hover {
+    color: var(--hover);
 }
 
-.toggleMenu {
+.toggler {
     display: none;
+    z-index: 99;
+}
+
+.toggleMenuContainer {
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -86,12 +99,23 @@ html {
     bottom: 0;
     width: 100%;
     height: 100vh;
-    z-index: 99;
+    z-index: 98;
     background-color: black;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+
+.toggleMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .toggleNavLink {
     color: white;
+    margin: 5px 0;
+    font-size: 2rem;
 }
 
 @media (max-width: 767.98px) {
