@@ -108,13 +108,13 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     align-content: center;
 }
 
 .toggleNavLink {
     color: white;
-    margin: 5px 0;
+    margin: 10px 0;
     font-size: 2rem;
 }
 
