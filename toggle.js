@@ -3,16 +3,19 @@ const toggleButton = document.querySelector(".toggler");
 const body = document.querySelector("body");
 
 toggleButton.onclick = function toggle() {
-    if(toggleMenu.style.visibility === "hidden") {
-        toggleMenu.style.visibility = "visible";
-        toggleMenu.style.opacity = "0.85";
+    if(!toggleMenu.classList.contains("menuOpen")) {
+        toggleMenu.classList.add("menuOpen");
         toggleButton.style.color = "white";
         body.style.overflow = "hidden";
     }
     else {
-        toggleMenu.style.visibility = "hidden";
-        toggleMenu.style.opacity = "0";
-        toggleButton.style.color = "black";
+        toggleMenu.classList.remove("menuOpen");
         body.style.overflow = "auto";
     }
 }
+
+window.onscroll = function(e) {
+    // print "false" if direction is down and "true" if up
+    console.log(this.oldScroll > this.scrollY);
+    this.oldScroll = this.scrollY;
+  }

@@ -47,6 +47,11 @@
                 <a href="#" class="navlink toggleNavLink">Drużyny</a>
                 <a href="#" class="navlink toggleNavLink">Zawodnicy</a>
             </div>
+            <div class="toggleSocialMenu">
+                <a href="#"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram fa-xl"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube fa-xl"></i></a>
+            </div>
         </div>
 
         <script src="toggle.js"></script>

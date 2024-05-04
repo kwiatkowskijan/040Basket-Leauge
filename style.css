@@ -21,7 +21,7 @@ html {
     justify-content: space-around;
     align-content: center;
     padding: 0 10px;
-    background-color: #EEE1C6;
+    background-color: var(--hover);
     position: fixed;
     top: 0;
     width: 100%;
@@ -30,6 +30,7 @@ html {
 #logo {
     width: 10%;
     text-align: center;
+    z-index: 99;
 }
 
 #logo img {
@@ -52,14 +53,14 @@ html {
 
 .navlink {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     margin: 0px 10px;
     font-weight: bold;
 }
 
 .navlink:hover {
-    color: var(--hover);
+    text-decoration: underline;
 }
 
 .social-menu {
@@ -73,35 +74,38 @@ html {
 .social-menu a {
     text-decoration: none;
     margin: 0px 10px;
-    color: #000;
+    color: #fff;
 }
 
-.social-menu a:hover {
-    color: var(--hover);
-}
+/* .social-menu a:hover {
+    text-decoration: underline;
+} */
 
 .toggler {
     display: none;
     z-index: 99;
+    color: #fff;
 }
 
 .toggleMenuContainer {
-    visibility: hidden;
-    opacity: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
     height: 100vh;
     z-index: 98;
-    background-color: black;
-    transition: visibility 0s, opacity 0.2s linear;
+    background-color: var(--hover);
+    transform: translateX(+100%);
+    transition: transform 0.5s ease;
+}
+
+.menuOpen {
+    transform: translateX(0);
 }
 
 .toggleMenu {
@@ -110,12 +114,42 @@ html {
     justify-content: center;
     align-items: start;
     align-content: center;
+    width: 100%;
+    padding: 0 20px;
 }
 
 .toggleNavLink {
-    color: white;
-    margin: 10px 0;
-    font-size: 2rem;
+    width: 100%;
+    color: #fff;
+    padding: 20px 0;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #fff;
+    margin: 0;
+}
+
+.toggleNavLink:first-child {
+    border-top: 2px solid #fff;
+}
+
+.toggleSocialMenu {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+    margin: 30px 0;
+    padding: 0 20px;
+}
+
+.toggleSocialMenu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 20px;
+}
+
+.toggleSocialMenu a:first-child {
+    margin: 0 20px 0 0;
 }
 
 @media (max-width: 767.98px) {
@@ -146,4 +180,10 @@ html {
     width: 100%;
     height: 200vh;
     /* background-color: aqua; */
+}
+
+.footer-container {
+    width: 100%;
+    height: 30vh;
+    background-color: var(--hover);
 }
