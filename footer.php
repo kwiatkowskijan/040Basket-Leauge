@@ -2,6 +2,10 @@
 
 </div>
 
+<?php
+    CloseCon($connect);
+?>
+
 </body>
 
 </html>
