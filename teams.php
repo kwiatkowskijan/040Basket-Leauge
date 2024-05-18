@@ -15,19 +15,29 @@
 
 <div class="subpage-container">
     <?php
-    $sql = "SELECT `TeamID`,`TeamName`,`logo` FROM `teams`";
+
+    $sql = "SELECT `TeamID`,`TeamName`,`logo-filename` FROM `teams`";
 
     $result = $connect->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='team-container'><p>" . $row["TeamName"] . "<img src='" . base64_encode($row["logo"]) . "'/></p></div>";
+
+            $teamID = $row["TeamID"];
+            $teamName = $row["TeamName"];
+            $image = $row["logo-filename"];
+
+            echo "<a href='team.php?TeamID=$teamID' class='team-link'>
+                    <div class='team-container'>
+                        <img src='img/$image' width='200px' height='170px'/>
+                        <p>$teamName</p>
+                    </div>
+                  </a>";
         }
     } else {
         echo "0 results";
     }
     ?>
 </div>
-
 
 <?php include("footer.php"); ?>
