@@ -1,7 +1,7 @@
 <body>
     <?php
-        include 'connect.php';
-        $connect = OpenCon();
+    include 'connect.php';
+    $connect = OpenCon();
     ?>
 
     <div class="navigation">
@@ -36,7 +36,7 @@
                 <a href="#" class="navlink toggleNavLink">Tabela</a>
                 <a href="#" class="navlink toggleNavLink">Terminarz</a>
                 <a href="#" class="navlink toggleNavLink">Wyniki</a>
-                <a href="#" class="navlink toggleNavLink">Drużyny</a>
+                <a href="teams.php" class="navlink toggleNavLink">Drużyny</a>
                 <a href="#" class="navlink toggleNavLink">Zawodnicy</a>
             </div>
             <div class="toggleSocialMenu">
@@ -47,4 +47,5 @@
         </div>
 
         <script src="toggleMenu.js"></script>
+
     </div>

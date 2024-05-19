@@ -11,11 +11,8 @@
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include ("header.php"); ?>
+<body>
 
-<div class="front-page-container">
+</body>
 
-    
-</div>
-
-<?php include ("footer.php"); ?>
+</html>
