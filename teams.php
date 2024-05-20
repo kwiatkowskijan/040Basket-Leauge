@@ -14,6 +14,7 @@
 <?php include("header.php"); ?>
 
 <div class="subpage-container">
+
     <?php
 
     $sql = "SELECT `TeamID`,`TeamName`,`logo-filename` FROM `teams`";
@@ -38,6 +39,7 @@
         echo "0 results";
     }
     ?>
+
 </div>
 
 <?php include("footer.php"); ?>
