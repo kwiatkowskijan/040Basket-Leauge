@@ -11,37 +11,41 @@
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include ("header.php"); ?>
+<?php include("header.php"); ?>
 
 <div class="subpage-container">
     <?php
-        if (isset($_GET['TeamID'])){
+    if (isset($_GET['TeamID'])) {
 
-            $teamID = intval($_GET['TeamID']);
-            
-            $sql = "SELECT * FROM `teams_stats` WHERE `TeamID` = $teamID";
+        $teamID = intval($_GET['TeamID']);
 
-            $result = $connect->query($sql);
+        $sql = "SELECT * FROM `teams_stats`\n"
 
-            if($result -> num_rows > 0){
-                while($row = $result -> fetch_assoc()){
-                    $points = $row['Points'];
-                    $assists = $row['Assists'];
-                    $rebounds = $row['Rebounds'];
+            . "INNER JOIN `teams` on `teams_stats`.`TeamID` = `teams`.`TeamID`\n"
 
-                    echo "<p>Points: $points</p><br>";
-                    echo "<p>Assists: $assists</p><br>";
-                    echo "<p>Points: $rebounds</p><br>";
-                }
+            . "WHERE `teams_stats`.`TeamID` = $teamID;";
+
+        $result = $connect->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $name = $row['TeamName'];
+                $points = $row['Points'];
+                $assists = $row['Assists'];
+                $rebounds = $row['Rebounds'];
+
+                echo "<p>Name: $name</p><br>";
+                echo "<p>Points: $points</p><br>";
+                echo "<p>Assists: $assists</p><br>";
+                echo "<p>Points: $rebounds</p><br>";
             }
-            else {
-                echo "Brak wyników dla tej drużyny";
-            }
+        } else {
+            echo "Brak wyników dla tej drużyny";
         }
-        else {
-            echo "Brak ID druzyny";
-        }
+    } else {
+        echo "Brak ID druzyny";
+    }
     ?>
 </div>
 
-<?php include ("footer.php"); ?>
+<?php include("footer.php"); ?>

@@ -16,7 +16,6 @@
 <div class="subpage-container">
 
     <form action="add-edit-team-action.php" method="post">
-        <label>Nazwa drużny</label><br>
         <input type="text" name="teamName" placeholder="Nazwa drużyny" required/><br>
         <input type="text" name="city" placeholder="Miasto" required/><br>
         <input type="number" name="establishedYear" placeholder="Rok utworzenia" required/><br>

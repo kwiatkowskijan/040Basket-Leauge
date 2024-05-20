@@ -11,9 +11,9 @@
     $sql = "INSERT INTO teams (TeamName, City, EstablishedYear, CoachName) VALUES ('$teamName', '$city', '$establishedYear', '$coach')";
 
     if ($connect->query($sql) === TRUE) {
-        echo "<h3>Data stored in the database successfully."
-            . " Please browse your localhost phpMyAdmin"
-            . " to view the updated data.</h3>";
+        $id = $connect -> insert_id;
+
+        echo "<p>Dodano drużyne. <a href='team.php?TeamID=$id'>Zobacz</a></p>";
     } else {
         echo "ERROR: Hush! Sorry $sql. " . $connect->error;
     }
