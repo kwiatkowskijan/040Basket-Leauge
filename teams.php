@@ -15,13 +15,13 @@
 
 <div class="subpage-container">
     <?php
-    $sql = "SELECT `TeamID`,`TeamName`,`logo` FROM `teams`";
+    $sql = "SELECT `TeamID`,`TeamName` FROM `teams`";
 
     $result = $connect->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='team-container'><p>" . $row["TeamName"] . "<img src='" . base64_encode($row["logo"]) . "'/></p></div>";
+            echo "<div class='team-container'><p>" . $row["TeamName"]  . "</p></div>";
         }
     } else {
         echo "0 results";

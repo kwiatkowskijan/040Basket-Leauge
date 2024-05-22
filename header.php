@@ -16,7 +16,7 @@
             <a href="#" class="navlink">Terminarz</a>
             <a href="#" class="navlink">Wyniki</a>
             <a href="teams.php" class="navlink">Drużyny</a>
-            <a href="#" class="navlink">Zawodnicy</a>
+            <a href="players.php" class="navlink">Zawodnicy</a>
         </div>
 
         <div class="social-menu">
