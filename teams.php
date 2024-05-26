@@ -16,30 +16,26 @@
 <div class="subpage-container">
 
     <?php
-
-    $sql = "SELECT `TeamID`,`TeamName`,`logo-filename` FROM `teams`";
-
-    $result = $connect->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-
-            $teamID = $row["TeamID"];
-            $teamName = $row["TeamName"];
-            $image = $row["logo-filename"];
-
-            echo "<a href='team.php?TeamID=$teamID' class='team-link'>
-                    <div class='team-container'>
-                        <img src='img/$image' width='200px' height='170px'/>
-                        <p>$teamName</p>
-                    </div>
-                  </a>";
-        }
-    } else {
-        echo "0 results";
-    }
+    $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
     ?>
 
+    <form id="season-form">
+        <label>Sezon</label><br>
+        <select id="season-select" name="seasonID" value="1">
+            <?php
+            while ($row = $seasons->fetch_assoc()) {
+                echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
+            }
+            ?>
+        </select>
+    </form><br>
+
+    <div id="teams-container">
+
+    </div>
+
 </div>
+
+<script src="season-select.js"></script>
 
 <?php include("footer.php"); ?>
