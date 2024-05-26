@@ -7,12 +7,12 @@
     <title>040Basket</title>
     <link rel="icon" type="image/x-icon" href="img/owl-logo-01.png">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head> 
 
-<?php include("header.php"); ?>
+<?php include ("views/layouts/header.php"); ?>
 
 <body>
     <form>
@@ -86,5 +86,5 @@ displayPlayers($connect, $search);
 
 </div>
 
-<?php include("footer.php"); ?>
+<?php include ("views/layouts/footer.php"); ?>
 </html>

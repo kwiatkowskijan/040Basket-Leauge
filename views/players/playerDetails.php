@@ -7,7 +7,7 @@
     <title>040Basket</title>
     <link rel="icon" type="image/x-icon" href="img/owl-logo-01.png">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 

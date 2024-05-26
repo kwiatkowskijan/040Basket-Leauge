@@ -1,13 +1,13 @@
 <body>
     <?php
-    include 'connect.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
     $connect = OpenCon();
     ?>
 
     <div class="navigation">
 
         <div id="logo">
-            <a href="index.php"><img src="img/owl-logo-01.png" alt="logo"></a>
+            <a href="/040Basket-Leauge/index.php"><img src="/040Basket-Leauge/assets/uploads/owl-logo-01.png" alt="logo"></a>
         </div>
 
         <div class="menu">
@@ -15,8 +15,8 @@
             <a href="#" class="navlink">Tabela</a>
             <a href="#" class="navlink">Terminarz</a>
             <a href="#" class="navlink">Wyniki</a>
-            <a href="teams.php" class="navlink">Drużyny</a>
-            <a href="players.php" class="navlink">Zawodnicy</a>
+            <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
+            <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
             <a href="#" class="navlink">Kontakt</a>
         </div>
 
@@ -36,8 +36,8 @@
                 <a href="#" class="navlink toggleNavLink">Tabela</a>
                 <a href="#" class="navlink toggleNavLink">Terminarz</a>
                 <a href="#" class="navlink toggleNavLink">Wyniki</a>
-                <a href="teams.php" class="navlink toggleNavLink">Drużyny</a>
-                <a href="#" class="navlink toggleNavLink">Zawodnicy</a>
+                <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink toggleNavLink">Drużyny</a>
+                <a href="/040Basket-Leauge/views/players/players.php" class="navlink toggleNavLink">Zawodnicy</a>
             </div>
             <div class="toggleSocialMenu">
                 <a href="https://www.facebook.com/profile.php?id=100095507017641&paipv=0&eav=AfaNz7qdzqhwXE6gdMObrWChRoiOCYbu7o6d_DL24DUiyEhPLBnSDVIOd1aKhVfS3NM" target="_blank"><i class="fa-brands fa-facebook fa-xl"></i></a>
@@ -46,6 +46,6 @@
             </div>
         </div>
 
-        <script src="toggleMenu.js"></script>
+        <script src="/040Basket-Leauge/assets/scripts/toggleMenu.js"></script>
 
     </div>

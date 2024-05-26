@@ -1,6 +1,6 @@
 <?php
 
-include("connect.php");
+include("config/connect.php");
 $connect = OpenCon();
 
 if (isset($_GET['seasonID'])) {
