@@ -19,6 +19,7 @@
     $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
     ?>
 
+
     <form id="season-form">
         <label>Sezon</label><br>
         <select id="season-select" name="seasonID" value="1">
