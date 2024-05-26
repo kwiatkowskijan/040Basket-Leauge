@@ -1,7 +1,7 @@
 <body>
     <?php
-        include 'connect.php';
-        $connect = OpenCon();
+    include 'connect.php';
+    $connect = OpenCon();
     ?>
 
     <div class="navigation">
@@ -17,11 +17,12 @@
             <a href="#" class="navlink">Wyniki</a>
             <a href="teams.php" class="navlink">Drużyny</a>
             <a href="#" class="navlink">Zawodnicy</a>
+            <a href="#" class="navlink">Kontakt</a>
         </div>
 
         <div class="social-menu">
-            <a href="#"><i class="fa-brands fa-facebook fa-xl"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram fa-xl"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100095507017641&paipv=0&eav=AfaNz7qdzqhwXE6gdMObrWChRoiOCYbu7o6d_DL24DUiyEhPLBnSDVIOd1aKhVfS3NM" target="_blank"><i class="fa-brands fa-facebook fa-xl"></i></a>
+            <a href="https://www.instagram.com/040basket/" target="_blank"><i class="fa-brands fa-instagram fa-xl"></i></a>
             <a href="#"><i class="fa-brands fa-youtube fa-xl"></i></a>
         </div>
 
@@ -35,15 +36,16 @@
                 <a href="#" class="navlink toggleNavLink">Tabela</a>
                 <a href="#" class="navlink toggleNavLink">Terminarz</a>
                 <a href="#" class="navlink toggleNavLink">Wyniki</a>
-                <a href="#" class="navlink toggleNavLink">Drużyny</a>
+                <a href="teams.php" class="navlink toggleNavLink">Drużyny</a>
                 <a href="#" class="navlink toggleNavLink">Zawodnicy</a>
             </div>
             <div class="toggleSocialMenu">
-                <a href="#"><i class="fa-brands fa-facebook fa-xl"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram fa-xl"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100095507017641&paipv=0&eav=AfaNz7qdzqhwXE6gdMObrWChRoiOCYbu7o6d_DL24DUiyEhPLBnSDVIOd1aKhVfS3NM" target="_blank"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                <a href="https://www.instagram.com/040basket/" target="_blank"><i class="fa-brands fa-instagram fa-xl"></i></a>
                 <a href="#"><i class="fa-brands fa-youtube fa-xl"></i></a>
             </div>
         </div>
 
         <script src="toggleMenu.js"></script>
+
     </div>
