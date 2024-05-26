@@ -3,7 +3,7 @@
 </div>
 
 <?php
-    CloseCon($connect);
+CloseCon($connect);
 ?>
 
 </body>
