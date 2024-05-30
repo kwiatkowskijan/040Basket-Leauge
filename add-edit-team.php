@@ -20,7 +20,7 @@
         <input type="text" name="city" placeholder="Miasto" required /><br>
         <input type="number" name="establishedYear" placeholder="Rok utworzenia" required /><br>
         <input type="text" name="coach" placeholder="Trener" required /><br>
-        <button type="button" id="add-team">Dodaj drużyne</button>
+        <button type="submit" id="add-team">Dodaj drużyne</button>
     </form>
 
     <div id="info-container">
@@ -29,25 +29,6 @@
 
 </div>
 
-<script>
-    document.getElementById("add-team").onclick = function() {
-        const teamName = document.querySelector('input[name="teamName"]').value;
-        const city = document.querySelector('input[name="city"]').value;
-        const establishedYear = document.querySelector('input[name="establishedYear"]').value;
-        const coach = document.querySelector('input[name="coach"]').value;
-        const xhr = new XMLHttpRequest();
-
-        xhr.open('POST', 'add-edit-team-action.php');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                document.getElementById('info-container').innerHTML = "<p>Pomyślnie dodano drużyune</p>";
-            } else {
-                console.error('Błąd podczas ładowania danych.');
-            }
-        }
-        xhr.send('teamName=' + encodeURIComponent(teamName) + '&city=' + encodeURIComponent(city) + '&establishedYear=' + encodeURIComponent(establishedYear) + '&coach=' + encodeURIComponent(coach));
-    };
-</script>
+<script src=/040Basket-Leauge/assets/scripts/add-team.js></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
