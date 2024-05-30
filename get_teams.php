@@ -1,6 +1,6 @@
 <?php
 
-include("config/connect.php");
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
 $connect = OpenCon();
 
 if (isset($_GET['seasonID'])) {
@@ -28,9 +28,9 @@ if (isset($_GET['seasonID'])) {
             $teamName = $row["TeamName"];
             $image = $row["logo-filename"];
 
-            echo "<a href='team.php?TeamID=$teamID' class='team-link'>
+            echo "<a href='/040Basket-Leauge/views/teams/team.php?TeamID=$teamID' class='team-link'>
                     <div class='team-container'>
-                        <img src='img/$image' width='200px' height='170px'/>
+                        <img src='/040Basket-Leauge/assets/uploads/$image' width='200px' height='170px'/>
                         <p>$teamName</p>
                     </div>
                   </a>";

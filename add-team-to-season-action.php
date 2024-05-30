@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
 
 $connect = OpenCon();
 

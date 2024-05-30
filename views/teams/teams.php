@@ -7,11 +7,11 @@
     <title>040Basket</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
 
-    <link rel="stylesheet" href="../../assets/styles/style.css">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include ("../layouts/header.php"); ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
 
 <div class="subpage-container">
 
@@ -37,6 +37,6 @@
 
 </div>
 
-<script src="assets/scripts/season-select.js"></script>
+<script src="/040Basket-Leauge/assets/scripts/season-select.js"></script>
 
-<?php include ("../layouts/footer.php"); ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
