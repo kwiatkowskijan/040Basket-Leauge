@@ -24,7 +24,7 @@
     <form>
         <div class="search fixed-search">
             <span class="search-icon material-symbols-outlined">search</span>
-            <input class="search-input" type="search" placeholder="Search player">
+            <input class="search-input" type="search" placeholder="Wyszukaj">
         </div>
     </form>
     
