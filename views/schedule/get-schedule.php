@@ -22,7 +22,7 @@ if (isset($_GET['seasonID'])) {
     if ($result->num_rows > 0) {
 
         echo "
-            <a href='update-schedule.php?id=0?season=$seasonID'>Dodaj mecz</a>
+            <a href='update-schedule.php?id=0?season=$seasonID' class='crud-add-button'>Dodaj mecz</a>
             <table>
                 <tr>
                     <th>Gospodarze</th>
@@ -51,8 +51,9 @@ if (isset($_GET['seasonID'])) {
                     <td>$gameTime</td>
                     <td>$courtName</td>
                     <td>
-                        <a href='update-schedule.php?id=$gameID'>Edytuj</a>
-                        <a href='delete-schedule.php?id=$gameID'>Usuń</a>
+                        <a href='update-schedule.php?id=$gameID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
+                        <a href='delete-schedule.php?id=$gameID'><i class='fa-solid fa-trash-can fa-xl'></i></a>
+                        <a href='read-schedule.php?id=$gameID'><i class='fa-solid fa-eye fa-xl'></i></a>
                     </td>
                 </tr>
             ";

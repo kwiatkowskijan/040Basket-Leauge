@@ -125,8 +125,8 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
             ?>
         </select><br><br>
         <label>Data meczu</label><br>
-        <input type="date" name="GameDate" /><br><br>
-        <input type="time" name="GameTime" /><br><br>
+        <input type="date" name="GameDate" value="<?php echo $gameDate; ?>"/><br><br>
+        <input type="time" name="GameTime" value="<?php echo $gameTime; ?>" /><br><br>
         <input type="hidden" name="id" value="<?php echo $gameId; ?>" />
         <button type="submit">Aktualizuj</button>
     </form>

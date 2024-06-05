@@ -34,7 +34,7 @@
         </select>
     </form><br>
 
-    <div id="schedule-container">
+    <div id="schedule-container" class="crud-container">
 
     </div>
 
