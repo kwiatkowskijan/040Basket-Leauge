@@ -34,7 +34,7 @@
         </select>
     </form><br>
 
-    <div id="teams-container">
+    <div id="schedule-container">
 
     </div>
 
