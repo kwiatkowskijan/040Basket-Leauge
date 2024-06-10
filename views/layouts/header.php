@@ -18,6 +18,18 @@
             <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
             <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
             <a href="#" class="navlink">Kontakt</a>
+            <?php
+                if (isset($_SESSION["useruid"]))
+                {
+                    echo "<a href ='/040Basket-Leauge/admin-details.php' class = 'navlink' >Admin panel </a>";
+                    echo "<a href ='includes/040Basket-Leauge/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
+                }
+                else
+                {
+                    echo "<a href ='/040Basket-Leauge/admin-signup.php' class = 'navlink'>Rejstracja admina </a>";
+                    echo "<a href ='/040Basket-Leauge/admin-login.php' class = 'navlink'>Logowanie admina </a>";
+                }
+            ?>
         </div>
 
         <div class="social-menu">

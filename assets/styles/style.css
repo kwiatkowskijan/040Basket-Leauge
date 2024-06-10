@@ -34,6 +34,7 @@ a {
     position: fixed;
     top: 0;
     width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #logo {
@@ -276,6 +277,152 @@ a {
     color: rgba(0,0,0,0.5);
 }
 
+
+.wrapper {
+    height: auto;
+    width: 420px;
+    background-color: var(--brand);
+    border-radius: 10px;
+    color: var(--main);
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper h1
+{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box
+{
+    position: relative;
+    width: 100%; /* Zmiana z 100% */
+    height: 50px;
+    margin: 30px 0; /* Zmiana z 30px */
+}
+
+.input-box input
+{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Nowa linia */
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid var(--main);
+    border-radius: 40px;
+    font-size: 16px;
+    color: var(--main);
+    padding: 20px 45px 20px 20px ;
+
+}
+
+.input-box input::placeholder
+{
+     color: var(--main);
+}
+
+.input-box i
+{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.wrapper .admin-btn {
+    width: 100%;
+    height: 45px;
+    background: var(--main);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #000;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s; /* Dodajemy efekt przejścia */
+}
+
+.wrapper .admin-btn:hover {
+    background: var(--logo); /* Zmiana koloru tła na var(--logo) po najechaniu */
+    color: #fff; /* Zmiana koloru tekstu na biały po najechaniu */
+}
+
+
+.search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+.search-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: var(--brand);
+    color: #fff;
+    border-radius: 20px;
+    margin-left: -40px;
+    cursor: pointer;
+}
+
+.player-list {
+    margin-top: 20px;
+}
+
+/* Player table*/
+.team-container {
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+.team-container p {
+    font-size: 18px;
+}
+
+/* Player name and surname*/
+.team-container a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Efekt hover dla linków */
+.team-container a:hover {
+    color: var(--brand);
+}
+
+
 /* CRUD */
 
 
@@ -322,3 +469,4 @@ a {
 
 
 /* END OF CRUD */
+
