@@ -22,8 +22,8 @@ if (isset($_GET['seasonID'])) {
     if ($result->num_rows > 0) {
 
         echo "
-            <a href='update-schedule.php?id=0?season=$seasonID' class='crud-add-button'>Dodaj mecz</a>
-            <table>
+           
+            <table> <a href='update-schedule.php?id=0&season=$seasonID' class='crud-add-button'>Dodaj mecz</a>
                 <tr>
                     <th>Gospodarze</th>
                     <th>Goscie</th>
@@ -61,7 +61,8 @@ if (isset($_GET['seasonID'])) {
 
         echo "</table>";
     } else {
-        echo "0 results";
+        echo "<a href='update-schedule.php?id=0&season=$seasonID' class='crud-add-button'>Dodaj mecz</a>";
+        echo "Nie ma meczów dla tego sezonu";
     }
 
     CloseCon($connect);

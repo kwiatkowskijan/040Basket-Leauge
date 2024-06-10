@@ -31,7 +31,7 @@
         </select>
     </form><br>
 
-    <div id="teams-container">
+    <div id="teams-container" class="crud-container">
 
     </div>
 
