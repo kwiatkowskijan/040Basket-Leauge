@@ -3,6 +3,5 @@
 session_start();
 session_unset();
 session_destroy();
-
-header("location: ../index.php");
+header("location: /040Basket-Leauge/index.php");
 exit;

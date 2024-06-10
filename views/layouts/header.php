@@ -21,15 +21,14 @@
             <?php
                 if (isset($_SESSION["useruid"]))
                 {
-                    echo "<a href ='admin-details.php' class = 'navlink' >Admin panel </a>";
-                    echo "<a href ='includes/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
+                    echo "<a href ='/040Basket-Leauge/admin-details.php' class = 'navlink' >Admin panel </a>";
+                    echo "<a href ='includes/040Basket-Leauge/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
                 }
                 else
                 {
-                    echo "<a href ='admin-signup.php' class = 'navlink'>Rejstracja admina </a>";
-                    echo "<a href ='admin-login.php' class = 'navlink'>Logowanie admina </a>";
+                    echo "<a href ='/040Basket-Leauge/admin-signup.php' class = 'navlink'>Rejstracja admina </a>";
+                    echo "<a href ='/040Basket-Leauge/admin-login.php' class = 'navlink'>Logowanie admina </a>";
                 }
-
             ?>
         </div>
 

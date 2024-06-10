@@ -29,13 +29,13 @@
                 <input type="text" name="uid" placeholder="Nazwa użytkownika"required>
             </div>
             <div class="input-box">
-                <input type="text" name="pwd" placeholder="Hasło"required>
+                <input type="password" name="pwd" placeholder="Hasło"required>
             </div>
             <div class="input-box">
                 <input type="password" name="pwdreapeat" placeholder="Powtórz hasło"required>
             </div>
             <div class="input-box">
-                <button type="password" class="admin-btn" name="submit">Zarejestruj się</button>
+                <button type="submit" class="admin-btn" name="submit">Zarejestruj się</button>
             </div>
             </form>
                 <?php
