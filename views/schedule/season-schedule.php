@@ -13,8 +13,11 @@
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
 
-<div class="subpage-container">
+<?php
 
+?>
+
+<div class="subpage-container">
     <?php
     $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
     ?>
@@ -31,12 +34,12 @@
         </select>
     </form><br>
 
-    <div id="teams-container" class="crud-container">
+    <div id="schedule-container" class="crud-container">
 
     </div>
 
 </div>
 
-<script src="/040Basket-Leauge/assets/scripts/season-select.js"></script>
+<script src="/040Basket-Leauge/assets/scripts/season-select-for-schedule.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>

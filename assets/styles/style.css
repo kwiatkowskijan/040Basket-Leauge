@@ -4,8 +4,9 @@
     --main: #fff5ea;
     --brand: #00471b;
     --accent: #eee1c6;
-    --subapage-padding-h: 15%;
+    --subapage-padding-h: 10%;
     --subpage-padding-v: 150px;
+    --button-border-radius: 5px;
 }
 
 * {
@@ -16,6 +17,10 @@
 
 html {
     font-family: "Lato";
+}
+
+a {
+    text-decoration: none;
 }
 
 .navigation {
@@ -272,6 +277,7 @@ html {
     color: rgba(0,0,0,0.5);
 }
 
+
 .wrapper {
     height: auto;
     width: 420px;
@@ -415,4 +421,52 @@ html {
 .team-container a:hover {
     color: var(--brand);
 }
+
+
+/* CRUD */
+
+
+.crud-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.crud-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.crud-container tr {
+    text-align: center;
+}
+
+.crud-container th,
+.crud-container td {
+    padding: 10px 5px;
+    border-bottom: 1px solid black;
+    padding: 15px 0;
+}
+
+.crud-container tr:nth-child(2n) {
+    background-color: #cecece;
+}
+
+.crud-container table a {
+    color: #000;
+}
+
+.crud-add-button {
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    background-color: var(--brand);
+    color: #fff;
+    border-radius: var(--button-border-radius);
+    width: fit-content;
+    text-align: center;
+}
+
+
+
+/* END OF CRUD */
 
