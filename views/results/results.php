@@ -31,13 +31,12 @@
         </select>
     </form><br>
 
-    <div id="players-container" class="crud-container">
+    <div id="results-container" class="crud-container">
 
     </div>
 
 </div>
 
-<script src="/040Basket-Leauge/assets/scripts/season-select-players.js"></script>
-<script src="/040Basket-Leauge/assets/scripts/delete-confirmation.js"></script>
+<script src="/040Basket-Leauge/assets/scripts/season-select-for-results.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>

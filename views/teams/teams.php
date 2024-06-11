@@ -38,5 +38,6 @@
 </div>
 
 <script src="/040Basket-Leauge/assets/scripts/season-select.js"></script>
+<script src="/040Basket-Leauge/assets/scripts/delete-confirmation.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
