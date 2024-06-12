@@ -49,7 +49,7 @@ if (isset($_GET['seasonID'])) {
                               <td>$weight</td>
                               <td>
                                   <a href='add-update-player.php?id=$playerID&season=$seasonID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                                  <a href='#' onclick='confirmDeletion($playerID, $seasonID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
+                                  <a href='#' onclick='confirmDeletion($playerID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
                               </td>
                           </tr>";
         }
