@@ -97,3 +97,12 @@ function loginUser($connect, $username, $pwd)
     }
 }
 
+function randomNumber()
+{
+    $min = 1000;
+    $max = 9999;
+    $number = rand($min, $max);
+    return $number;
+
+}
+
