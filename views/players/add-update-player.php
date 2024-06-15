@@ -6,11 +6,9 @@ $connect = OpenCon();
 
 $isUpdate = false;
 $teamID = 0;
-$seasonID = 0;
 
 if (isset($_GET['id'])) {
     $playerID = $_GET['id'];
-    $seasonID = $_GET['season'];
 
     if ($playerID != 0) {
         $isUpdate = true;
@@ -42,21 +40,25 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["PlayerID"]) && !empty($_POST["PlayerID"])) {
 
-        $ufirstName = $_POST["FirstName"];
-        $ulastName = $_POST["LastName"];
-        $uage = $_POST["Age"];
-        $uheight = $_POST["Height"];
-        $uweight = $_POST["Weight"];
-        $uposition = $_POST["Position"];
-        $uteamId = $_POST["TeamID"];
-        $uplayerId = $_POST["PlayerID"];
+    if(isset($_POST["id"]) && $_POST["id"] > 0) {
+        $isUpdate = true;
+    }
+
+    if ($isUpdate) {
+        $playerID = $_POST["id"];
+        $firstName = $_POST["FirstName"];
+        $lastName = $_POST["LastName"];
+        $age = $_POST["Age"];
+        $height = $_POST["Height"];
+        $weight = $_POST["Weight"];
+        $position = $_POST["Position"];
+        $teamId = $_POST["TeamID"];
 
         $sql = "UPDATE `players` SET `FirstName`=?, `LastName`=?, `Age`=?, `Height`=?, `Weight` =?, `Position` =?, `TeamID` =?  WHERE `PlayerID` = ?";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsii", $ufirstName, $ulastName, $uage, $uheight, $uweight, $uposition, $uteamId, $uplayerId);
+            mysqli_stmt_bind_param($stmt, "ssiddsii", $firstName, $lastName, $age, $height, $weight, $position, $teamId, $playerID);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie zaktualizowano";
@@ -66,24 +68,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         mysqli_stmt_close($stmt);
-    } elseif (isset($_POST["seasonID"]) && !empty($_POST["seasonID"])) {
+    } else {
 
-        $afirstName = $_POST["FirstName"];
-        $alastName = $_POST["LastName"];
-        $aage = $_POST["Age"];
-        $aheight = $_POST["Height"];
-        $aweight = $_POST["Weight"];
-        $aposition = $_POST["Position"];
-        $ateamID = $_POST["TeamID"];
+        $firstName = $_POST["FirstName"];
+        $lastName = $_POST["LastName"];
+        $age = $_POST["Age"];
+        $height = $_POST["Height"];
+        $weight = $_POST["Weight"];
+        $position = $_POST["Position"];
+        $teamID = $_POST["TeamID"];
 
 
         $teamsSql = "INSERT INTO `players` (`FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position`, `TeamID`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($connect, $teamsSql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsi", $afirstName, $alastName, $aage, $aheight, $aweight, $aposition, $ateamID);
+            mysqli_stmt_bind_param($stmt, "ssiddsi", $firstName, $lastName, $age, $height, $weight, $position, $teamID);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie dodano";
+
+                $playerID = mysqli_insert_id($connect);
+                $isUpdate = true;
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -106,11 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <?php
-    $query = "SELECT `TeamName`, `teams`.`TeamID` 
-FROM `teams`
-INNER JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID`
-WHERE `SeasonID` = $seasonID;";
-
+    $query = "SELECT `TeamName`, `teams`.`TeamID` FROM `teams`;";
     $teams = $connect->query($query);
     ?>
 
@@ -154,16 +155,16 @@ WHERE `SeasonID` = $seasonID;";
         <select name="TeamID">
             <?php
             while ($row = $teams->fetch_assoc()) {
-                echo "<option value='" . $row['TeamID'] . "'>" . $row['TeamName'] . "</option>";
+                echo "<option value='" . $row['TeamID'] . "'";
+                if($isUpdate && $row['TeamID'] == $teamID) { echo "selected"; }
+                echo ">" . $row['TeamName'] . "</option>";
             }
             ?>
         </select>
 
         <?php
         if ($isUpdate) {
-            echo "<input type='hidden' name='PlayerID' value='" . $playerID . "' />";
-        } else {
-            echo "<input type='hidden' name='seasonID' value='" . $seasonID . "' />";
+            echo "<input type='hidden' name='id' value='" . $playerID . "' />";
         }
         ?>
         <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>

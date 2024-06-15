@@ -9,8 +9,8 @@ $teamID = 0;
 $seasonID = 0;
 
 if (isset($_GET['id'])) {
+    
     $teamID = $_GET['id'];
-    $seasonID = $_GET['season'];
 
     if ($teamID != 0) {
         $isUpdate = true;
@@ -40,18 +40,24 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["id"]) && !empty($_POST["id"])) {
+    
+    if(isset($_POST["id"]) && $_POST["id"] > 0) {
+        $isUpdate = true;
+    }
+
+    if ($isUpdate) {
 
         $uteamID = $_POST["id"];
-        $uteamName = $_POST["TeamName"];
-        $ucity = $_POST["City"];
-        $ucoachName = $_POST["Coach"];
-        $uestablishedYear = $_POST["Year"];
+
+        $teamName = $_POST["TeamName"];
+        $city = $_POST["City"];
+        $coachName = $_POST["Coach"];
+        $establishedYear = $_POST["Year"];
 
         $sql = "UPDATE `teams` SET `TeamName`=?, `City`=?, `CoachName`=?, `EstablishedYear`=?  WHERE `TeamID` = ?";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "sssii", $uteamName, $ucity, $ucoachName, $uestablishedYear, $uteamID);
+            mysqli_stmt_bind_param($stmt, "sssii", $teamName, $city, $coachName, $establishedYear, $uteamID);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie zaktualizowano";
@@ -61,55 +67,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         mysqli_stmt_close($stmt);
-    } elseif (isset($_POST["seasonID"]) && !empty($_POST["seasonID"])) {
+    } else {
 
-        $aseasonID = $_POST["seasonID"];
-        $ateamName = $_POST["TeamName"];
-        $acity = $_POST["City"];
-        $acoachName = $_POST["Coach"];
-        $aestablishedYear = $_POST["Year"];
-
-        mysqli_begin_transaction($connect);
+        $teamName = $_POST["TeamName"];
+        $city = $_POST["City"];
+        $coachName = $_POST["Coach"];
+        $establishedYear = $_POST["Year"];
 
         $teamsSql = "INSERT INTO `teams` (`TeamName`, `City`, `Coachname`, `EstablishedYear`) VALUES (?, ?, ?, ?)";
 
         if ($teamsStmt = mysqli_prepare($connect, $teamsSql)) {
+            mysqli_stmt_bind_param($teamsStmt, "sssi", $teamName, $city, $coachName, $establishedYear);
+            mysqli_stmt_execute($teamsStmt);
 
-            mysqli_stmt_bind_param($teamsStmt, "sssi", $ateamName, $acity, $acoachName, $aestablishedYear);
-
-            if (mysqli_stmt_execute($teamsStmt)) {
-
-                $ateamID = mysqli_insert_id($connect);
-
-                $seasonSql = "INSERT INTO `teams_in_season` (`SeasonID`, `TeamID`) VALUES (?, ?)";
-
-                if ($seasonStmt = mysqli_prepare($connect, $seasonSql)) {
-
-                    mysqli_stmt_bind_param($seasonStmt, "ii", $aseasonID, $ateamID);
-
-                    if (mysqli_stmt_execute($seasonStmt)) {
-
-                        mysqli_commit($connect);
-                        echo "Dodano oba wpisy";
-                    } else {
-
-                        mysqli_rollback($connect);
-                        echo "Oops! Something went wrong with the second insert. Please try again later.";
-                    }
-
-                    mysqli_stmt_close($seasonStmt);
-                } else {
-                    mysqli_rollback($connect);
-                    echo "Oops! Something went wrong with the second query preparation. Please try again later.";
-                }
-            } else {
-                mysqli_rollback($connect);
-                echo "Oops! Something went wrong with the first insert. Please try again later.";
-            }
-
+            $uteamID = mysqli_insert_id($connect);
+    
             mysqli_stmt_close($teamsStmt);
+
+            $isUpdate = true;
+
+            echo "Pomyślnie dodano";
+
         } else {
-            echo "Oops! Something went wrong with the first query preparation. Please try again later.";
+            echo "Oops! Something went wrong with the query preparation. Please try again later.";
         }
     }
 }
@@ -144,8 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php
         if ($isUpdate) {
             echo "<input type='hidden' name='id' value='" . $teamID . "' />";
-        } else {
-            echo "<input type='hidden' name='seasonID' value='" . $seasonID . "' />";
         }
         ?>
         <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
