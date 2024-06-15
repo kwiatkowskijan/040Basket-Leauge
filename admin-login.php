@@ -20,16 +20,16 @@
             <h1>Panel logowania Admina</h1>
             <form id="log_admin_pannel" action="includes/login.inc.php" method="post">
                 <div class="input-box">
-                    <input type="text" name = "uid" placeholder="Nazwa użytkownika/Email"
+                    <input type="text" name="uid" placeholder="Nazwa użytkownika/Email"
                     required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name = "pwd" placeholder="Hasło"
+                    <input type="password" name="pwd" placeholder="Hasło"
                     required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
-                <button type="submit" class="admin-btn">Zaloguj</button>
+                <button type="submit" name="submit" class="admin-btn">Zaloguj</button>
             </form>
     </div>
         <?php
