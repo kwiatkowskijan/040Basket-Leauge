@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie zaktualizowano";
+                echo "<a href='teams.php' class='crud-add-button'>Wróć</a>";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -87,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $isUpdate = true;
 
             echo "Pomyślnie dodano";
+            echo "<a href='teams.php' class='crud-add-button'>Wróć</a>";
 
         } else {
             echo "Oops! Something went wrong with the query preparation. Please try again later.";
@@ -104,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Document</title>
 </head>
 
-<body>
+<body> 
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 

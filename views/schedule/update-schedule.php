@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie zaktualizowano";
+                echo "<a href='season-schedule.php' class='crud-add-button'>Wróć</a>";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -79,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie dodano";
+                echo "<a href='season-schedule.php' class='crud-add-button'>Wróć</a>";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }

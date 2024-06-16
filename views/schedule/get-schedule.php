@@ -47,7 +47,7 @@ if (isset($_GET['seasonID'])) {
 
             echo "
             <tr>
-                <td>{$gameDate} / {$gameTime}</td>
+                <td>{$gameDate} - {$gameTime}</td>
                 <td>{$courtName}</td>
                 <td>{$homeName}</td>
                 <td>{$awayName}</td>

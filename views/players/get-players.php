@@ -1,6 +1,6 @@
 <?php
 
-$sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position`, `teams`.`TeamName` as `Team`
+$sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `BirthDate`, `Height`, `Weight`, `Position`, `teams`.`TeamName` as `Team`
             FROM `players`
             INNER JOIN `teams` ON `players`.`TeamID` = `teams`.`TeamID`
             ORDER BY `FirstName`;";
@@ -25,11 +25,15 @@ if ($result->num_rows > 0) {
         $playerID = $row["PlayerID"];
         $firstName = $row["FirstName"];
         $lastName = $row["LastName"];
-        $age = $row["Age"];
+        $birthDate = $row["BirthDate"];
         $height = $row["Height"];
         $weight = $row["Weight"];
         $position = $row["Position"];
         $team = $row["Team"];
+
+        $birthDateObject = new DateTime($birthDate);
+        $currentDate = new DateTime();
+        $age = $currentDate->diff($birthDateObject)->y;
 
         echo "<tr>
                               <td>$firstName</td>

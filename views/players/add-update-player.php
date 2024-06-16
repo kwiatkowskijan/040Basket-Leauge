@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     }
 
     if ($isUpdate) {
-        $sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position`, `TeamID`
+        $sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `BirthDate`, `Height`, `Weight`, `Position`, `TeamID`
                 FROM `players` 
                 WHERE `PlayerID` = $playerID";
 
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
 
             $firstName = $row["FirstName"];
             $lastName = $row["LastName"];
-            $age = $row["Age"];
+            $birthDate = $row["BirthDate"];
             $height = $row["Height"];
             $weight = $row["Weight"];
             $position = $row["Position"];
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $playerID = $_POST["id"];
         $firstName = $_POST["FirstName"];
         $lastName = $_POST["LastName"];
-        $age = $_POST["Age"];
+        $birthDate = $_POST["BirthDate"];
         $height = $_POST["Height"];
         $weight = $_POST["Weight"];
         $position = $_POST["Position"];
@@ -58,10 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "UPDATE `players` SET `FirstName`=?, `LastName`=?, `Age`=?, `Height`=?, `Weight` =?, `Position` =?, `TeamID` =?  WHERE `PlayerID` = ?";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsii", $firstName, $lastName, $age, $height, $weight, $position, $teamId, $playerID);
+            mysqli_stmt_bind_param($stmt, "ssiddsii", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamId, $playerID);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie zaktualizowano";
+                echo "<a href='players.php' class='crud-add-button'>Wróć</a>";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -72,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $firstName = $_POST["FirstName"];
         $lastName = $_POST["LastName"];
-        $age = $_POST["Age"];
+        $birthDate = $_POST["BirthDate"];
         $height = $_POST["Height"];
         $weight = $_POST["Weight"];
         $position = $_POST["Position"];
@@ -82,11 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $teamsSql = "INSERT INTO `players` (`FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position`, `TeamID`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($connect, $teamsSql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsi", $firstName, $lastName, $age, $height, $weight, $position, $teamID);
+            mysqli_stmt_bind_param($stmt, "ssiddsi", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamID);
 
             if (mysqli_stmt_execute($stmt)) {
                 echo "Pomyślnie dodano";
-
+                echo "<a href='players.php' class='crud-add-button'>Wróć</a>";
                 $playerID = mysqli_insert_id($connect);
                 $isUpdate = true;
             } else {
@@ -123,8 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Nazwisko</label><br>
         <input type="text" name="LastName" value="<?php echo $isUpdate ? $lastName : ''; ?>" required /><br><br>
 
-        <label>Wiek</label><br>
-        <input type="text" name="Age" value="<?php echo $isUpdate ? $age : ''; ?>" required /><br><br>
+        <label>Data urodzenia</label><br>
+        <input type="date" name="BirthDate" value="<?php echo $isUpdate ? $birthDate : ''; ?>" required /><br><br>
 
         <label>Pozycja</label><br>
         <select name="Position" required>
