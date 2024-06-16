@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
 $connect = OpenCon();
 
 $isUpdate = false;
-$teamID = 0;
+$playerID = 0;
 
 if (isset($_GET['id'])) {
     $playerID = $_GET['id'];

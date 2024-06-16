@@ -92,6 +92,7 @@ function loginUser($connect, $username, $pwd)
 
         $verificationCode = randomNumber();
         $_SESSION["verificationCode"] = $verificationCode;
+        $_SESSION["verificationCodeTime"] = time();
 
         $mail = new PHPMailer(true);
 
@@ -105,10 +106,10 @@ function loginUser($connect, $username, $pwd)
             $mail->Port = 587;
 
             $mail->setFrom('040basket@gmail.com', 'Mailer');
-            $mail->addAddress('$uidExists["usersEmail"]');
+            $mail->addAddress($uidExists["usersEmail"]);
             $mail->isHTML(true);
             $mail->Subject = 'Logowanie dwuetapowe';
-            $mail->Body    = $verificationCode;
+            $mail->Body = $verificationCode;
 
             $mail->send();
             echo '<p>Email successfully sent</p>';
