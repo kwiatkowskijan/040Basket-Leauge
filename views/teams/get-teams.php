@@ -1,31 +1,23 @@
 <?php
+$sql = "select `teams`.`TeamID`, `teams`.`TeamName`, `teams`.`logo-filename`\n"
 
-include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
-$connect = OpenCon();
+    . "from `teams`\n"
 
-if (isset($_GET['seasonID'])) {
+    // . "left join `teams_in_season` on `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
 
-    $seasonID = $_GET['seasonID'];
+    // . "left join `season` on `season`.`SeasonID` = `teams_in_season`.`SeasonID`\n"
 
-    $sql = "select `teams`.`TeamID`, `teams`.`TeamName`, `teams`.`logo-filename`\n"
+    // . "where `season`.`SeasonID` = $seasonID \n"
 
-        . "from `teams`\n"
+    . "order by `TeamName`";
 
-        . "left join `teams_in_season` on `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
+$result = $connect->query($sql);
 
-        . "left join `season` on `season`.`SeasonID` = `teams_in_season`.`SeasonID`\n"
+if ($result->num_rows > 0) {
 
-        . "where `season`.`SeasonID` = $seasonID \n"
-
-        . "order by `TeamName`";
-
-    $result = $connect->query($sql);
-
-    if ($result->num_rows > 0) {
-
-        echo "
+    echo "
            
-            <a href='add-update-teams.php?id=0&season=$seasonID' class='crud-add-button'>Dodaj drużyne</a>
+            <a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>
             <table> 
                 <tr>
                     <th>Logo</th>
@@ -34,34 +26,31 @@ if (isset($_GET['seasonID'])) {
                 </tr>
             ";
 
-        while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
 
-            $teamID = $row["TeamID"];
-            $logo = $row["logo-filename"];
-            $name = $row["TeamName"];
-            $teamID = $row["TeamID"];
+        $teamID = $row["TeamID"];
+        $logo = $row["logo-filename"];
+        $name = $row["TeamName"];
+        $teamID = $row["TeamID"];
 
-            echo "
+        echo "
                 <tr>
                     <td><img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='50px' height='50px'/></td>
                     <td>$name</td>
                     <td>
                         <a href='add-update-teams.php?id=$teamID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                        <a href='delete-team.php?id=$teamID'><i class='fa-solid fa-trash-can fa-xl'></i></a>
-                        <a href='#'><i class='fa-solid fa-eye fa-xl'></i></a>
+                        <a href='#' onclick='confirmDeletion($teamID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
                     </td>
                 </tr>
             ";
-        }
-
-        echo "</table>";
-    } else {
-        echo "<a href='add-update-teams.php?id=0&season=$seasonID' class='crud-add-button'>Dodaj drużyne</a>";
-        echo "Nie ma drużyn w tym sezonie";
     }
+
+    echo "</table>";
+} else {
+    echo "<a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>";
+    echo "Nie ma drużyn w tym sezonie";
 }
 
 
-CloseCon($connect);
 
-?>
+CloseCon($connect);

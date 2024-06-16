@@ -13,8 +13,8 @@
         <div class="menu">
             <a href="#" class="navlink">O lidze</a>
             <a href="#" class="navlink">Tabela</a>
-            <a href="#" class="navlink">Terminarz</a>
-            <a href="#" class="navlink">Wyniki</a>
+            <a href="/040Basket-Leauge/views/schedule/season-schedule.php" class="navlink">Terminarz</a>
+            <!-- <a href="#" class="navlink">Wyniki</a> -->
             <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
             <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
             <a href="#" class="navlink">Kontakt</a>
@@ -22,7 +22,7 @@
                 if (isset($_SESSION["useruid"]))
                 {
                     echo "<a href ='/040Basket-Leauge/admin-details.php' class = 'navlink' >Admin panel </a>";
-                    echo "<a href ='includes/040Basket-Leauge/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
+                    echo "<a href ='/040Basket-Leauge/includes/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
                 }
                 else
                 {
@@ -46,7 +46,7 @@
             <div class="toggleMenu">
                 <a href="#" class="navlink toggleNavLink">O lidze</a>
                 <a href="#" class="navlink toggleNavLink">Tabela</a>
-                <a href="#" class="navlink toggleNavLink">Terminarz</a>
+                <!-- <a href="#" class="navlink toggleNavLink">Terminarz</a> -->
                 <a href="#" class="navlink toggleNavLink">Wyniki</a>
                 <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink toggleNavLink">Drużyny</a>
                 <a href="/040Basket-Leauge/views/players/players.php" class="navlink toggleNavLink">Zawodnicy</a>

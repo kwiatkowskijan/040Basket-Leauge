@@ -19,7 +19,6 @@ session_start();
 
 <div class="front-page-container">
 
-    
 </div>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
