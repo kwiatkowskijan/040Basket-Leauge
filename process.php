@@ -14,18 +14,17 @@ if (isset($_POST['btn-send'])) {
     $mail = new PHPMailer(true);
 
     try {
-        // Konfiguracja serwera SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com';  // Tutaj podaj nazwę hosta SMTP
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 't61738768@gmail.com'; // Tu podaj swój adres e-mail
-        $mail->Password = 'Dupa1234';  // Tu podaj swoje hasło do konta e-mail
-        $mail->SMTPSecure = 'tls'; // Typ szyfrowania - TLS, alternatywnie można użyć 'ssl'
-        $mail->Port = 587; // Port SMTP
+        $mail->Username = '040basket@gmail.com';
+        $mail->Password = 'tiiz ypjs timu lizc';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
 
         // Ustawienia wiadomości
         $mail->setFrom($Email, $UserName);
-        $mail->addAddress('040Basket-league@gmail.com'); // Adres odbiorcy
+        $mail->addAddress('040basket@gmail.com'); // Adres odbiorcy
         $mail->isHTML(true); // Format wiadomości jako HTML
         $mail->Subject = $Subject;
         $mail->Body = $Msg;
