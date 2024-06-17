@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -37,6 +38,7 @@
                     <div class="input-box">
                         <textarea name="msg" class="form-control" placeholder="Tekst" required></textarea>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LdwJfspAAAAACU34odFEnMSawU1teBTS8U2Levd"></div>
                     <div class="input-box">
                         <button type="submit" class="admin-btn" name="btn-send">Wyślij</button>
                     </div>
