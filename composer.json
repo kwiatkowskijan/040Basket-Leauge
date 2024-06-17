@@ -1,4 +1,19 @@
 {
+
+    "name": "kwiat/040basket-leauge",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kwiat\\040basketLeauge\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kwiatkowskijan",
+            "email": "70690975+kwiatkowskijan@users.noreply.github.com"
+        }
+    ],
+
     "require": {
         "phpmailer/phpmailer": "^6.9"
     }

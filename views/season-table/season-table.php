@@ -16,27 +16,26 @@
 <div class="subpage-container">
 
     <?php
-    // $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
+    $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
     ?>
 
-
-    <!-- <form id="season-form">
+    <form id="season-form">
         <label>Sezon</label><br>
         <select id="season-select" name="seasonID" value="1">
             <?php
-            // while ($row = $seasons->fetch_assoc()) {
-            //     echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
-            // }
+            while ($row = $seasons->fetch_assoc()) {
+                echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
+            }
             ?>
         </select>
-    </form><br> -->
+    </form><br>
 
-    <div id="teams-container" class="crud-container">
-        <?php include 'get-teams.php'; ?>
+    <div id="season-table-container" class="crud-container">
+
     </div>
 
 </div>
 
-<script src="/040Basket-Leauge/assets/scripts/delete-confirmation.js"></script>
+<script src="/040Basket-Leauge/assets/scripts/season-select-for-season-table.js"></script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
