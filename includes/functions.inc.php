@@ -122,7 +122,6 @@ function loginUser($connect, $username, $pwd)
     }
 }
 
-
 function randomNumber()
 {
     $min = 1000;

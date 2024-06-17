@@ -12,7 +12,7 @@ if (isset($_POST["submit"]))
 
     require_once 'functions.inc.php';
 
-    loginUser($connect, $username, $pwd );
+    loginUser($connect, $username, $pwd);
 
     CloseCon($connect);
 
