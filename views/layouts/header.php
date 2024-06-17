@@ -17,7 +17,7 @@
             <a href="#" class="navlink">Wyniki</a>
             <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
             <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
-            <a href="#" class="navlink">Kontakt</a>
+            <a href="/040Basket-Leauge/contact.php" class="navlink">Kontakt</a>
             <?php
                 if (isset($_SESSION["useruid"]))
                 {
