@@ -470,3 +470,37 @@ a {
 
 /* END OF CRUD */
 
+/* ADIMN PANEL */
+
+.admin-page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+}
+
+.admin-nav-container {
+    width: 15%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    padding: var(--subpage-padding-v) 0;
+    border-right: 1px solid black;
+}
+
+.admin-nav-container a {
+    padding: 10px 30px;
+    border-bottom: 1px solid black;
+}
+
+.admin-nav-container a:nth-child(1) {
+    border-top: 1px solid black;
+}
+
+.admin-page-content {
+    width: 85%;
+    height: inherit;
+    padding: var(--subpage-padding-v) var(--subapage-padding-h);
+}
+/* END OF ADMIN PANEL */
+

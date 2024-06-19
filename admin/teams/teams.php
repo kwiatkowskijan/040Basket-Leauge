@@ -13,27 +13,22 @@
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
 
-<div class="subpage-container">
 
-    <?php
-    // $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
-    ?>
+<div class="admin-page-container">
 
+    <div class="admin-nav-container">
+        <a href="admin.php" class="admin-nav">Kokpit</a>
+        <a href="seasons/seasons.php" class="admin-nav">Sezony</a>
+        <a href="players/players.php" class="admin-nav">Zawodnicy</a>
+        <a href="teams/teams.php" class="admin-nav">Drużyny</a>
+        <a href="schedule/season-schedule.php" class="admin-nav">Mecze</a>
+        <a href="/040Basket-Leauge/includes/signup.inc.php" class="admin-nav">Dodaj nowego admina</a>
+    </div>
 
-    <!-- <form id="season-form">
-        <label>Sezon</label><br>
-        <select id="season-select" name="seasonID" value="1">
-            <?php
-            // while ($row = $seasons->fetch_assoc()) {
-            //     echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
-            // }
-            ?>
-        </select>
-    </form><br> -->
-
-    <div id="teams-container" class="crud-container">
+    <div id="teams-container" class="admin-page-content crud-container">
         <?php include 'get-teams.php'; ?>
     </div>
+
 
 </div>
 
