@@ -480,7 +480,7 @@ a {
 }
 
 .admin-nav-container {
-    width: 15%;
+    width: 300px;
     height: inherit;
     display: flex;
     flex-direction: column;
@@ -498,7 +498,7 @@ a {
 }
 
 .admin-page-content {
-    width: 85%;
+    width: calc(100% - 300px);
     height: inherit;
     padding: var(--subpage-padding-v) var(--subapage-padding-h);
 }

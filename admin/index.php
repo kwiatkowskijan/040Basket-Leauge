@@ -1,6 +1,7 @@
 <?php
-session_start();
 include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/includes/check-admin.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
+$connect = OpenCon();
 ?>
 
 <!DOCTYPE html>
@@ -16,24 +17,17 @@ include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/includes/check-admin.php'
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
+<body>
 
-<div class="admin-page-container">
+    <div class="admin-page-container">
 
-    <div class="admin-nav-container">
-        <a href="admin.php" class="admin-nav">Kokpit</a>
-        <a href="seasons/seasons.php" class="admin-nav">Sezony</a>
-        <a href="players/players.php" class="admin-nav">Zawodnicy</a>
-        <a href="teams/teams.php" class="admin-nav">Drużyny</a>
-        <a href="schedule/season-schedule.php" class="admin-nav">Mecze</a>
-        <a href="/040Basket-Leauge/includes/signup.inc.php" class="admin-nav">Dodaj nowego admina</a>
+        <?php include 'layouts/admin-nav.php'; ?>
+
+        <div class="admin-page-content">
+            <h1>Witaj, <?php echo $_SESSION['useruid'] ?>!</h1>
+        </div>
+
     </div>
 
-    <div class="admin-page-content">
-       
-    </div>
-
-
-</div>
-
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
+</body>
+<?php CloseCon($connect); ?>

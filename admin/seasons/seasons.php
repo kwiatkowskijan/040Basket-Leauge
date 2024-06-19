@@ -1,3 +1,8 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/includes/check-admin.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
+$connect = OpenCon();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -11,15 +16,13 @@
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
-
-<div class="subpage-container">
-
-    <div id="season-container" class="crud-container">
-        <?php include 'get-seasons.php'; ?>
+<body>
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
+            <div id="season-container" class="crud-container admin-page-container">
+                <?php include 'get-seasons.php'; ?>
+            </div>
+        </div>
     </div>
-
-</div>
-
-
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
+</body>

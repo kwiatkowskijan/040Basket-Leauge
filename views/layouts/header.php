@@ -21,7 +21,7 @@
             <?php
                 if (isset($_SESSION["useruid"]))
                 {
-                    echo "<a href ='/040Basket-Leauge/admin.php' class = 'navlink' >Admin panel </a>";
+                    echo "<a href ='/040Basket-Leauge/admin/index.php' class = 'navlink' >Admin panel </a>";
                     echo "<a href ='/040Basket-Leauge/includes/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
                 }
             ?>

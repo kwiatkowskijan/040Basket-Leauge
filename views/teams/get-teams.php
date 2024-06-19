@@ -9,17 +9,6 @@ $result = $connect->query($sql);
 
 if ($result->num_rows > 0) {
 
-    echo "
-           
-            <a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>
-            <table> 
-                <tr>
-                    <th>Logo</th>
-                    <th>Nazwa</th>
-                    <th>Akcje</th>
-                </tr>
-            ";
-
     while ($row = $result->fetch_assoc()) {
 
         $teamID = $row["TeamID"];
