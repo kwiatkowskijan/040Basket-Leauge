@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
 
-        <button type="submit">Dodaj</button>
+        <button type="submit">Dodaj</button> <br>
 
     </form>
 

@@ -20,6 +20,7 @@ $connect = OpenCon();
     <div class="admin-page-container">
         <?php include '../layouts/admin-nav.php'; ?>
         <div class="admin-page-content">
+            <h1 class="page-title">Sezony</h1>
             <div id="season-container" class="crud-container admin-page-container">
                 <?php include 'get-seasons.php'; ?>
             </div>

@@ -12,9 +12,8 @@
 
         <div class="menu">
             <a href="#" class="navlink">O lidze</a>
-            <a href="#" class="navlink">Tabela</a>
+            <a href="/040Basket-Leauge/views/season-table/season-table.php" class="navlink">Tabela</a>
             <a href="#" class="navlink">Terminarz</a>
-            <!-- <a href="#" class="navlink">Wyniki</a> -->
             <a href="#" class="navlink">Drużyny</a>
             <a href="#" class="navlink">Zawodnicy</a>
             <a href="#" class="navlink">Kontakt</a>
