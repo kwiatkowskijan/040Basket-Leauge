@@ -3,28 +3,15 @@ $sql = "select `teams`.`TeamID`, `teams`.`TeamName`, `teams`.`logo-filename`\n"
 
     . "from `teams`\n"
 
-    // . "left join `teams_in_season` on `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
+    . "inner join `teams_in_season` on `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
 
-    // . "left join `season` on `season`.`SeasonID` = `teams_in_season`.`SeasonID`\n"
+    . "where `SeasonID` = 1\n"
 
-    // . "where `season`.`SeasonID` = $seasonID \n"
-
-    . "order by `TeamName`";
+    . "order by `TeamName`;";
 
 $result = $connect->query($sql);
 
 if ($result->num_rows > 0) {
-
-    echo "
-           
-            <a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>
-            <table> 
-                <tr>
-                    <th>Logo</th>
-                    <th>Nazwa</th>
-                    <th>Akcje</th>
-                </tr>
-            ";
 
     while ($row = $result->fetch_assoc()) {
 
@@ -34,14 +21,11 @@ if ($result->num_rows > 0) {
         $teamID = $row["TeamID"];
 
         echo "
-                <tr>
-                    <td><img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='50px' height='50px'/></td>
-                    <td>$name</td>
-                    <td>
-                        <a href='add-update-teams.php?id=$teamID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                        <a href='#' onclick='confirmDeletion($teamID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
-                    </td>
-                </tr>
+                <div class='single-team'>
+                    <img src='/040Basket-Leauge/assets/uploads/$logo' width='100px' />
+                    <h3>$name</h3>
+                    <a href='#'> Zobacz profil </a>
+                </div>
             ";
     }
 
@@ -50,7 +34,5 @@ if ($result->num_rows > 0) {
     echo "<a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>";
     echo "Nie ma drużyn w tym sezonie";
 }
-
-
 
 CloseCon($connect);

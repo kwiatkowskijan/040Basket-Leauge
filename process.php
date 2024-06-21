@@ -9,11 +9,24 @@ if (isset($_POST['btn-send'])) {
     $Email = $_POST['email'];
     $Subject = $_POST['subject'];
     $Msg = $_POST['msg'];
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
+
+    // Weryfikacja reCAPTCHA
+    $secretKey = '6LdwJfspAAAAAChiexutN-Yd_BFeDR6Z28oxS4Es'; // Zamień na Twój sekretny klucz reCAPTCHA
+    $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$recaptchaResponse}");
+    $responseData = json_decode($verifyResponse);
+
+    if (!$responseData->success) {
+        $error = "Weryfikacja reCAPTCHA nie powiodła się. Spróbuj ponownie.";
+        header("Location: /040Basket-Leauge/contact.php?error=" . urlencode($error));
+        exit();
+    }
 
     // Inicjalizacja PHPMailer
     $mail = new PHPMailer(true);
 
     try {
+        // Konfiguracja serwera SMTP
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
@@ -31,13 +44,17 @@ if (isset($_POST['btn-send'])) {
 
         // Wysyłanie wiadomości
         if ($mail->send()) {
-            header("Location: /040Basket-Leauge/index.php?success");
+            header("Location: /040Basket-Leauge/contact.php?success");
             exit();
         } else {
-            echo "Wiadomość nie została wysłana. Błąd: " . $mail->ErrorInfo;
+            $error = "Wiadomość nie została wysłana. Błąd: " . $mail->ErrorInfo;
+            header("Location: /040Basket-Leauge/contact.php?error=" . urlencode($error));
+            exit();
         }
     } catch (Exception $e) {
-        echo "Wystąpił błąd podczas wysyłania wiadomości: {$mail->ErrorInfo}";
+        $error = "Wystąpił błąd podczas wysyłania wiadomości: {$mail->ErrorInfo}";
+        header("Location: /040Basket-Leauge/contact.php?error=" . urlencode($error));
+        exit();
     }
 }
 ?>

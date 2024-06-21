@@ -22,7 +22,10 @@
                 <?php
                 if (isset($_GET['success'])) {
                     $Msg = "Wiadomość wysłana z sukcesem!";
-                    echo '<div class="alert">' . $Msg . '</div>';
+                    echo '<div class="alert alert-success">' . $Msg . '</div>';
+                } elseif (isset($_GET['error'])) {
+                    $error = $_GET['error'];
+                    echo '<div class="alert alert-danger">' . htmlspecialchars($error) . '</div>';
                 }
                 ?>
                 <form action="process.php" method="post">
@@ -43,6 +46,7 @@
                         <button type="submit" class="admin-btn" name="btn-send">Wyślij</button>
                     </div>
                 </form>
+
             </section>
         </div>
     </div>

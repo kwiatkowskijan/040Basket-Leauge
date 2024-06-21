@@ -17,7 +17,7 @@
 <div class="subpage-container">
     <div class="wrapper ">
         <section class="signup-form">
-            <h2>Dodaj profil adnima</h2>
+            <h2>Dodaj profil admina</h2>
             <form action="includes/signup.inc.php" method="post">
             <div class="input-box">
                 <input type="text" name="name" placeholder="imie i nazwisko" required>

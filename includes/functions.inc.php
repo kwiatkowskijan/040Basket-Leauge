@@ -124,8 +124,8 @@ function loginUser($connect, $username, $pwd)
 
 function randomNumber()
 {
-    $min = 1000;
-    $max = 9999;
+    $min = 100000;
+    $max = 999999;
     $number = rand($min, $max);
     return $number;
 }

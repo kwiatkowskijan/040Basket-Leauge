@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         mysqli_stmt_close($stmt);
+        
     } else {
 
         $teamName = $_POST["TeamName"];
@@ -122,6 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Rok założenia</label><br>
         <input type="number" name="Year" value="<?php echo $isUpdate ? $establishedYear : ''; ?>" required /><br><br>
 
+        <label>Logo</label><br>
+        <input type="file" name="logo" /><br><br>
 
         <?php
         if ($isUpdate) {

@@ -1,5 +1,7 @@
 <?php
-session_start();
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/includes/check-admin.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
+$connect = OpenCon();
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +17,17 @@ session_start();
     <script src="https://kit.fontawesome.com/79ac7dc523.js" crossorigin="anonymous"></script>
 </head>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
+<body>
 
-<div class="subpage-container">
-    <div class="teams-container">
-        <?php include 'get-teams.php'; ?>
+    <div class="admin-page-container">
+
+        <?php include 'layouts/admin-nav.php'; ?>
+
+        <div class="admin-page-content">
+            <h1>Witaj, <?php echo $_SESSION['useruid'] ?>!</h1>
+        </div>
+
     </div>
-</div>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/footer.php'; ?>
+</body>
+<?php CloseCon($connect); ?>
