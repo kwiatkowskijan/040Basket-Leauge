@@ -232,7 +232,7 @@ a {
 
 
 .search {
-    --padding: = 14px;
+    --padding: =14px;
     width: max-content;
     display: flex;
     align-items: center;
@@ -569,6 +569,7 @@ a {
     text-align: center;
     font-size: 1.3rem;
 }
+
 /* EMD OF VERIFY 2FA */
 
 /*TEAMS*/

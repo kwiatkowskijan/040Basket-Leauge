@@ -3,7 +3,11 @@ $sql = "select `teams`.`TeamID`, `teams`.`TeamName`, `teams`.`logo-filename`\n"
 
     . "from `teams`\n"
 
-    . "order by `TeamName`";
+    . "inner join `teams_in_season` on `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
+
+    . "where `SeasonID` = 1\n"
+
+    . "order by `TeamName`;";
 
 $result = $connect->query($sql);
 
@@ -18,7 +22,7 @@ if ($result->num_rows > 0) {
 
         echo "
                 <div class='single-team'>
-                    <img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='75px' height='75px' />
+                    <img src='/040Basket-Leauge/assets/uploads/$logo' width='100px' />
                     <h3>$name</h3>
                     <a href='#'> Zobacz profil </a>
                 </div>
@@ -30,7 +34,5 @@ if ($result->num_rows > 0) {
     echo "<a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>";
     echo "Nie ma drużyn w tym sezonie";
 }
-
-
 
 CloseCon($connect);

@@ -7,7 +7,6 @@ if (isset($_GET["id"])) {
     $seasonID = $_GET["id"];
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["id"])) {
         $seasonID = $_POST["id"];
@@ -29,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Błąd: Brak identyfikatora sezonu.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -50,12 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php
         $sql = "SELECT `teams`.`TeamID`, `TeamName`\n"
 
-        . "FROM `teams`\n"
+            . "FROM `teams`\n"
 
-        . "LEFT JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID` AND `teams_in_season`.`SeasonID` = $seasonID "
-        
-        . "WHERE `teams_in_season`.`TeamID` IS NULL;";
-    
+            . "LEFT JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID` AND `teams_in_season`.`SeasonID` = $seasonID "
+
+            . "WHERE `teams_in_season`.`TeamID` IS NULL;";
 
         $result = $connect->query($sql);
 
@@ -72,11 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
 
         <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
-
         <button type="submit">Dodaj</button> <br>
-
     </form>
 
 </body>
-
 </html>

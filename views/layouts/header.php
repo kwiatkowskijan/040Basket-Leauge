@@ -19,11 +19,10 @@
             <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
             <a href="/040Basket-Leauge/contact.php" class="navlink">Kontakt</a>
             <?php
-                if (isset($_SESSION["useruid"]))
-                {
-                    echo "<a href ='/040Basket-Leauge/admin/index.php' class = 'navlink' >Admin panel </a>";
-                    echo "<a href ='/040Basket-Leauge/includes/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
-                }
+            if (isset($_SESSION["useruid"])) {
+                echo "<a href ='/040Basket-Leauge/admin/index.php' class = 'navlink' >Admin panel </a>";
+                echo "<a href ='/040Basket-Leauge/includes/admin-logout.inc.php' class = 'navlink' >Wyloguj </a>";
+            }
             ?>
         </div>
 

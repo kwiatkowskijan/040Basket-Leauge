@@ -14,11 +14,6 @@
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
 
-
-
-
-
-
 <div class="subpage-container">
 
     <form>
@@ -27,7 +22,7 @@
             <input class="search-input" type="search" placeholder="Wyszukaj">
         </div>
     </form>
-    
+
     <?php
 
     // Funkcja do wyświetlania zawodników
