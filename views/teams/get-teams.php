@@ -17,14 +17,11 @@ if ($result->num_rows > 0) {
         $teamID = $row["TeamID"];
 
         echo "
-                <tr>
-                    <td><img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='50px' height='50px'/></td>
-                    <td>$name</td>
-                    <td>
-                        <a href='add-update-teams.php?id=$teamID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                        <a href='#' onclick='confirmDeletion($teamID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
-                    </td>
-                </tr>
+                <div class='single-team'>
+                    <img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='75px' height='75px' />
+                    <h3>$name</h3>
+                    <a href='#'> Zobacz profil </a>
+                </div>
             ";
     }
 

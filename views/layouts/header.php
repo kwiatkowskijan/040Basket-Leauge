@@ -1,5 +1,6 @@
 <body>
     <?php
+    session_start();
     include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/config/connect.php';
     $connect = OpenCon();
     ?>
@@ -14,9 +15,9 @@
             <a href="#" class="navlink">O lidze</a>
             <a href="/040Basket-Leauge/views/season-table/season-table.php" class="navlink">Tabela</a>
             <a href="#" class="navlink">Terminarz</a>
-            <a href="#" class="navlink">Drużyny</a>
-            <a href="#" class="navlink">Zawodnicy</a>
-            <a href="#" class="navlink">Kontakt</a>
+            <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
+            <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
+            <a href="/040Basket-Leauge/contact.php" class="navlink">Kontakt</a>
             <?php
                 if (isset($_SESSION["useruid"]))
                 {
