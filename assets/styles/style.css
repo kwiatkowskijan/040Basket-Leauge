@@ -35,6 +35,7 @@ a {
     top: 0;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 98;
 }
 
 #logo {
@@ -203,6 +204,7 @@ a {
     min-height: 100vh;
     margin-top: 85px;
     padding: var(--subpage-padding-v) var(--subapage-padding-h);
+    background-color: #FFF5EA;
 }
 
 .team-container {
@@ -457,7 +459,7 @@ a {
     padding: 10px 5px;
     margin-bottom: 10px;
     background-color: var(--brand);
-    color: #fff;
+    color: #fff !important;
     border-radius: var(--button-border-radius);
     width: fit-content;
     text-align: center;
@@ -576,8 +578,7 @@ a {
 
 .teams-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 30px;
     grid-row-gap: 30px;
 }
@@ -585,10 +586,47 @@ a {
 .teams-container .single-team {
     width: 100%;
     min-height: 250px;
-    background-color: #c5c5c5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 15px 5px;
 }
+
+.teams-container .single-team img {
+    width: 100px;
+}
+
+/*END OF TEAMS*/
+
+/* PLAYERS */
+
+.players-container {
+    width: 100%;
+}
+
+/* END OF PLAYERS */
+
+/* SCHEDULE */
+
+.schedule-container {
+    width: 100%;
+    padding: 30px 0;
+}
+
+.schedule-container table {
+    width: 100%;
+}
+
+.schedule-container table th {
+    text-align: left;
+    padding: 15px 0;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.schedule-container table td {
+    padding: 20px 0;
+}
+
+/* END OF SCHEDULE */
