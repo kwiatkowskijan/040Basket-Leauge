@@ -21,12 +21,12 @@ if ($result->num_rows > 0) {
         $teamID = $row["TeamID"];
 
         echo "
-                <div class='single-team'>
-                    <img src='/040Basket-Leauge/assets/uploads/$logo' width='100px' />
-                    <h3>$name</h3>
-                    <a href='#'> Zobacz profil </a>
-                </div>
-            ";
+        <div class='single-team'>
+            <img src='/040Basket-Leauge/assets/uploads/$logo'/>
+            <h3>$name</h3>
+        </div>
+    ";
+    
     }
 
     echo "</table>";
@@ -34,5 +34,3 @@ if ($result->num_rows > 0) {
     echo "<a href='add-update-teams.php?id=0' class='crud-add-button'>Dodaj drużyne</a>";
     echo "Nie ma drużyn w tym sezonie";
 }
-
-CloseCon($connect);

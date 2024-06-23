@@ -14,7 +14,7 @@
         <div class="menu">
             <a href="#" class="navlink">O lidze</a>
             <a href="/040Basket-Leauge/views/season-table/season-table.php" class="navlink">Tabela</a>
-            <a href="#" class="navlink">Terminarz</a>
+            <a href="/040Basket-Leauge/views/schedule/schedule.php" class="navlink">Terminarz</a>
             <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink">Drużyny</a>
             <a href="/040Basket-Leauge/views/players/players.php" class="navlink">Zawodnicy</a>
             <a href="/040Basket-Leauge/contact.php" class="navlink">Kontakt</a>
@@ -40,8 +40,7 @@
             <div class="toggleMenu">
                 <a href="#" class="navlink toggleNavLink">O lidze</a>
                 <a href="#" class="navlink toggleNavLink">Tabela</a>
-                <!-- <a href="#" class="navlink toggleNavLink">Terminarz</a> -->
-                <a href="#" class="navlink toggleNavLink">Wyniki</a>
+                <a href="/040Basket-Leauge/views/schedule/schedule.php" class="navlink toggleNavLink">Terminarz</a>
                 <a href="/040Basket-Leauge/views/teams/teams.php" class="navlink toggleNavLink">Drużyny</a>
                 <a href="/040Basket-Leauge/views/players/players.php" class="navlink toggleNavLink">Zawodnicy</a>
             </div>
