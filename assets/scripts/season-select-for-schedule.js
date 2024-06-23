@@ -1,7 +1,5 @@
-document.getElementById('season-select').addEventListener('change', function() {
-    const seasonID = this.value;
+function loadSeasonData(seasonID) {
     const xhr = new XMLHttpRequest();
-
     xhr.open('GET', '/040Basket-Leauge/admin/schedule/get-schedule.php?seasonID=' + seasonID, true);
     xhr.onload = function() {
         if (xhr.status === 200) {
@@ -11,4 +9,14 @@ document.getElementById('season-select').addEventListener('change', function() {
         }
     };
     xhr.send();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const seasonSelect = document.getElementById('season-select');
+    const selectedOption = seasonSelect.options[seasonSelect.selectedIndex];
+    loadSeasonData(selectedOption.value);
+
+    seasonSelect.addEventListener('change', function() {
+        loadSeasonData(this.value);
+    });
 });

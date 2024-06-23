@@ -26,4 +26,6 @@ $connect = OpenCon();
             </div>
         </div>
     </div>
+
+    <script src="/040Basket-Leauge/assets/scripts/delete-season-confirmation.js"></script>
 </body>

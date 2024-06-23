@@ -17,9 +17,10 @@ $connect = OpenCon();
 </head>
 
 <body>
-    <div class="admin-container">
-    <?php include '../layouts/admin-nav.php'; ?>
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
         <div class="admin-page-content">
+            <h1 class="page-title">Mecze</h1>
             <?php
             $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
             ?>
@@ -29,7 +30,7 @@ $connect = OpenCon();
                 <select id="season-select" name="seasonID" value="1">
                     <?php
                     while ($row = $seasons->fetch_assoc()) {
-                        echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
+                        echo "<option value='" . $row['SeasonID'] . "'" . ($row['state'] == 'ongoing' ? " selected" : "") . ">" . $row['Name'] . "</option>";
                     }
                     ?>
                 </select>
@@ -42,4 +43,5 @@ $connect = OpenCon();
     </div>
 
     <script src="/040Basket-Leauge/assets/scripts/season-select-for-schedule.js"></script>
+    <script src="/040Basket-Leauge/assets/scripts/delete-game-confirmation.js"></script>
 </body>

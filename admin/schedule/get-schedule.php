@@ -62,8 +62,7 @@ if (isset($_GET['seasonID'])) {
             echo "</td>
                 <td>
                     <a href='update-schedule.php?id={$gameID}'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                    <a href='delete-schedule.php?id={$gameID}'><i class='fa-solid fa-trash-can fa-xl'></i></a>
-                    <a href='read-schedule.php?id={$gameID}'><i class='fa-solid fa-eye fa-xl'></i></a>
+                    <a href='#' onclick='confirmDeletion($gameID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
                 </td>
             </tr>
             ";

@@ -7,17 +7,21 @@ $connect = OpenCon();
 $isUpdate = false;
 $gameId = 0;
 $seasonID = 0;
+$message = ''; // Zmienna do przechowywania wiadomości
 
 if (isset($_GET['id'])) {
     $gameId = $_GET['id'];
-    $seasonID = $_GET['season'];
+
+    if(isset($_GET['season'])) {
+        $seasonID = $_GET['season'];
+    }
 
     if ($gameId != 0) {
         $isUpdate = true;
     }
 
     if ($isUpdate) {
-        $sql = "SELECT `GameID`, `GameDate`, `GameTime`, `HomeID`, `AwayID`, `CourtID`, `SeasonID` 
+        $sql = "SELECT `GameID`, `GameDate`, `GameTime`, `HomeID`, `AwayID`, `CourtID`, `SeasonID`, `HomeScore`, `AwayScore` 
                 FROM `game` 
                 WHERE `GameID` = $gameId";
 
@@ -32,11 +36,11 @@ if (isset($_GET['id'])) {
             $gameTime = $row["GameTime"];
             $gameDate = $row["GameDate"];
             $seasonID = $row["SeasonID"];
+            $homeScore = $row["HomeScore"];
+            $awayScore = $row["AwayScore"];
         } else {
-            echo "Nie znaleziono rekordu";
+            $message = "Nie znaleziono rekordu";
         }
-    } else {
-        echo "Dodawanie";
     }
 }
 
@@ -49,17 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ucourtID = $_POST["CourtID"];
         $ugameTime = $_POST["GameTime"];
         $ugameDate = $_POST["GameDate"];
+        $uhomeScore = $_POST["HomeScore"];
+        $uawayScore = $_POST["AwayScore"];
 
-        $sql = "UPDATE `game` SET `GameDate`=?, `GameTime`=?, `HomeID`=?, `AwayID`=?, `CourtID`=? WHERE `GameID` = ?";
+        $sql = "UPDATE `game` SET `GameDate`=?, `GameTime`=?, `HomeID`=?, `AwayID`=?, `CourtID`=?, `HomeScore`=?, `AwayScore`=? WHERE `GameID` = ?";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "sssssi", $ugameDate, $ugameTime, $uhomeID, $uawayID, $ucourtID, $ugameId);
+            mysqli_stmt_bind_param($stmt, "sssssiii", $ugameDate, $ugameTime, $uhomeID, $uawayID, $ucourtID, $uhomeScore, $uawayScore, $ugameId);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie zaktualizowano";
-                echo "<a href='season-schedule.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie zaktualizowano";
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -72,17 +77,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $acourtID = $_POST["CourtID"];
         $agameTime = $_POST["GameTime"];
         $agameDate = $_POST["GameDate"];
+        $ahomeScore = $_POST["HomeScore"];
+        $aawayScore = $_POST["AwayScore"];
 
-        $sql = "INSERT INTO `game` (`GameDate`, `GameTime`, `HomeID`, `AwayID`, `CourtID`, `SeasonID`) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `game` (`GameDate`, `GameTime`, `HomeID`, `AwayID`, `CourtID`, `SeasonID`, `HomeScore`, `AwayScore`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssiiii", $agameDate, $agameTime, $ahomeID, $aawayID, $acourtID, $aseasonId);
+            mysqli_stmt_bind_param($stmt, "ssiiiiii", $agameDate, $agameTime, $ahomeID, $aawayID, $acourtID, $aseasonId, $ahomeScore, $aawayScore);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie dodano";
-                echo "<a href='season-schedule.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie dodano";
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
         mysqli_stmt_close($stmt);
@@ -96,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <title>Document</title>
 </head>
 
@@ -107,60 +114,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $courts = $connect->query("SELECT `CourtID`, `Name` FROM `court` WHERE 1=1");
     ?>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label>Wybierz gospodarza</label><br>
-        <select name="HomeID" required>
-            <?php
-            while ($row = $teamsHome->fetch_assoc()) {
-                echo "<option value='" . $row['TeamID'] . "'";
-                if ($isUpdate && $row['TeamID'] == $homeID) {
-                    echo " selected";
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <label>Wybierz gospodarza</label><br>
+                <select name="HomeID" required>
+                    <?php
+                    while ($row = $teamsHome->fetch_assoc()) {
+                        echo "<option value='" . $row['TeamID'] . "'";
+                        if ($isUpdate && $row['TeamID'] == $homeID) {
+                            echo " selected";
+                        }
+                        echo ">" . $row['TeamName'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
+
+                <label>Wybierz gościa</label><br>
+                <select name="AwayID" required>
+                    <?php
+                    while ($row = $teamsAway->fetch_assoc()) {
+                        echo "<option value='" . $row['TeamID'] . "'";
+                        if ($isUpdate && $row['TeamID'] == $awayID) {
+                            echo " selected";
+                        }
+                        echo ">" . $row['TeamName'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
+
+                <label>Wybierz halę</label><br>
+                <select name="CourtID" required>
+                    <?php
+                    while ($row = $courts->fetch_assoc()) {
+                        echo "<option value='" . $row['CourtID'] . "'";
+                        if ($isUpdate && $row['CourtID'] == $courtID) {
+                            echo " selected";
+                        }
+                        echo ">" . $row['Name'] . "</option>";
+                    }
+                    ?>
+                </select><br><br>
+
+                <label>Data meczu</label><br>
+                <input type="date" name="GameDate" value="<?php echo $isUpdate ? $gameDate : ''; ?>" min="<?php echo date('Y-m-d'); ?>" required /><br><br>
+                
+                <label>Godzina meczu</label><br>
+                <input type="time" name="GameTime" value="<?php echo $isUpdate ? $gameTime : ''; ?>" required /><br><br>
+
+                <label>Wynik gospodarza</label><br>
+                <input type="number" name="HomeScore" value="<?php echo $isUpdate ? $homeScore : ''; ?>" /><br><br>
+
+                <label>Wynik gościa</label><br>
+                <input type="number" name="AwayScore" value="<?php echo $isUpdate ? $awayScore : ''; ?>" /><br><br>
+
+                <?php
+                if ($isUpdate) {
+                    echo "<input type='hidden' name='id' value='" . $gameId . "' />";
+                } else {
+                    echo "<input type='hidden' name='seasonID' value='" . $seasonID . "' />";
                 }
-                echo ">" . $row['TeamName'] . "</option>";
-            }
-            ?>
-        </select><br><br>
+                ?>
+                <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
+            </form>
 
-        <label>Wybierz gościa</label><br>
-        <select name="AwayID" required>
-            <?php
-            while ($row = $teamsAway->fetch_assoc()) {
-                echo "<option value='" . $row['TeamID'] . "'";
-                if ($isUpdate && $row['TeamID'] == $awayID) {
-                    echo " selected";
-                }
-                echo ">" . $row['TeamName'] . "</option>";
-            }
-            ?>
-        </select><br><br>
+            <?php if ($message): ?>
+                <p><?php echo $message; ?></p>
+                <a href="season-schedule.php" class="crud-add-button">Wróć</a>
+            <?php endif; ?>
 
-        <label>Wybierz halę</label><br>
-        <select name="CourtID" required>
-            <?php
-            while ($row = $courts->fetch_assoc()) {
-                echo "<option value='" . $row['CourtID'] . "'";
-                if ($isUpdate && $row['CourtID'] == $courtID) {
-                    echo " selected";
-                }
-                echo ">" . $row['Name'] . "</option>";
-            }
-            ?>
-        </select><br><br>
-
-        <label>Data meczu</label><br>
-        <input type="date" name="GameDate" value="<?php echo $isUpdate ? $gameDate : ''; ?>" required /><br><br>
-        <label>Godzina meczu</label><br>
-        <input type="time" name="GameTime" value="<?php echo $isUpdate ? $gameTime : ''; ?>" required /><br><br>
-
-        <?php
-        if ($isUpdate) {
-            echo "<input type='hidden' name='id' value='" . $gameId . "' />";
-        } else {
-            echo "<input type='hidden' name='seasonID' value='" . $seasonID . "' />";
-        }
-        ?>
-        <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
-    </form>
+        </div>
+    </div>
 
 </body>
 
