@@ -31,7 +31,7 @@
             }
             echo "<p>Szczegółowe informacje: </p>";
             echo "<table>";
-            echo "<tr><td>Wiek: " . $row["Age"] . "</td></tr>";
+            echo "<tr><td>Data urodzenia: " . $row["BirthDate"] . "</td></tr>";
             echo "<tr><td>Wzrost: " . $row["Height"] . "</td></tr>";
             echo "<tr><td>Waga: " . $row["Weight"] . "</td></tr>";
             echo "<tr><td>Pozycja: " . $row["Position"] . "</td></tr>";

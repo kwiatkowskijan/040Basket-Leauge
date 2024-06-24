@@ -22,7 +22,7 @@
         function displayPlayers($connect, $search = '')
         {
             // SQL query for fetching players
-            $sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position` FROM `players`";
+            $sql = "SELECT `PlayerID`, `FirstName`, `LastName`, `BirthDate`, `Height`, `Weight`, `Position` FROM `players`";
             if (!empty($search)) {
                 $search = $connect->real_escape_string($search);
                 $sql .= " WHERE `FirstName` LIKE '%$search%' OR `LastName` LIKE '%$search%' ORDER BY `LastName`";
