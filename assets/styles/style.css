@@ -506,7 +506,7 @@ a {
 .admin-nav-container .nav a:hover,
 .admin-nav-container .nav a:active {
     background: var(--brand);
-    color: #fff;
+    color: #ffffff;
 }
 
 .admin-page-content {
