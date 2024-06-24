@@ -15,8 +15,8 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/040Basket-Leauge/views/layouts/header.php'; ?>
 
     <div class="subpage-container">
-        <div class="wrapper">
-            <section class="container">
+        <div class="contact-wrapper">
+            <section class="contact-container">
                 <h2>Skontaktuj się z nami</h2>
                 <hr>
                 <?php
