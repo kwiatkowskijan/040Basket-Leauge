@@ -37,41 +37,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <title>Formularz usuwania drużyn</title>
 </head>
 
 <body>
 
-    <h2>Wybierz drużyny do usunięcia:</h2>
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <h2>Wybierz drużyny do usunięcia:</h2>
 
-        <?php
-        $sql = "SELECT `teams`.`TeamID`, `TeamName`\n"
-             . "FROM `teams`\n"
-             . "INNER JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
-             . "WHERE `teams_in_season`.`SeasonID` = $seasonID;";
-    
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-        $result = $connect->query($sql);
+                <?php
+                $sql = "SELECT `teams`.`TeamID`, `TeamName`\n"
+                    . "FROM `teams`\n"
+                    . "INNER JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID`\n"
+                    . "WHERE `teams_in_season`.`SeasonID` = $seasonID;";
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<label>";
-                echo "<input type='checkbox' name='Teams[]' value='" . htmlspecialchars($row["TeamID"]) . "'>";
-                echo $row["TeamName"];
-                echo "</label><br>";
-            }
-        } else {
-            echo "Brak drużyn do usunięcia z tego sezonu.";
-        }
-        ?>
 
-        <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
+                $result = $connect->query($sql);
 
-        <button type="submit">Usuń</button>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<label>";
+                        echo "<input type='checkbox' name='Teams[]' value='" . htmlspecialchars($row["TeamID"]) . "'>";
+                        echo $row["TeamName"];
+                        echo "</label><br>";
+                    }
+                } else {
+                    echo "Brak drużyn do usunięcia z tego sezonu.";
+                }
+                ?>
 
-    </form>
+                <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
+
+                <button type="submit">Usuń</button>
+                <a href="./seasons.php">Wróć</a>
+            </form>
+        </div>
+    </div>
 
 </body>
 

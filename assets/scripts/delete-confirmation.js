@@ -1,5 +1,5 @@
-function confirmDeletion(teamID, seasonID) {
+function confirmDeletion(teamID) {
     if (confirm('Czy na pewno chcesz usunąć tę drużynę?')) {
-        window.location.href = 'delete-team.php?id=' + teamID + '&season=' + seasonID;
+        window.location.href = 'delete-team.php?id=' + teamID;
     }
 }

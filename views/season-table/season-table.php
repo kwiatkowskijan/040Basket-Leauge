@@ -24,11 +24,11 @@
         <select id="season-select" name="seasonID" value="1">
             <?php
             while ($row = $seasons->fetch_assoc()) {
-                echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
+                echo "<option value='" . $row['SeasonID'] . "'" . ($row['state'] == 'ongoing' ? " selected" : "") . ">" . $row['Name'] . "</option>";
             }
             ?>
         </select>
-    </form><br>
+    </form>
 
     <div id="season-table-container" class="crud-container">
 

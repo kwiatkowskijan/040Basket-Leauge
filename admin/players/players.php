@@ -21,6 +21,7 @@ $connect = OpenCon();
         <?php include '../layouts/admin-nav.php'; ?>
 
         <div id="players-container" class="admin-page-content crud-container">
+            <h1 class="page-title">Zawodnicy</h1>
             <?php include 'get-players.php'; ?>
         </div>
     </div>

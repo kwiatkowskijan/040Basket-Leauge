@@ -22,6 +22,7 @@ $connect = OpenCon();
         <?php include '../layouts/admin-nav.php'; ?>
 
         <div class="admin-page-content">
+            <h1 class="page-title">Drużyny</h1>
             <div id="teams-container" class="crud-container">
                 <?php include 'get-teams.php'; ?>
             </div>

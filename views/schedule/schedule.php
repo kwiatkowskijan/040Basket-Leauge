@@ -16,7 +16,7 @@
 <div class="subpage-container">
 
     <?php
-    $seasons = $connect->query("SELECT `Name`, `SeasonID` FROM `season`;");
+    $seasons = $connect->query("SELECT `Name`, `SeasonID`, `state` FROM `season`;");
     ?>
 
     <form id="season-form">
@@ -24,7 +24,7 @@
         <select id="season-select" name="seasonID" value="1">
             <?php
             while ($row = $seasons->fetch_assoc()) {
-                echo "<option value='" . $row['SeasonID'] . "'>" . $row['Name'] . "</option>";
+                echo "<option value='" . $row['SeasonID'] . "'" . ($row['state'] == 'ongoing' ? " selected" : "") . ">" . $row['Name'] . "</option>";
             }
             ?>
         </select>

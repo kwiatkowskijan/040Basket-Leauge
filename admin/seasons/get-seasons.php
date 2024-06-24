@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
                     <td>$teams</td>
                     <td>
                         <a href='add-edit-season.php?id=$seasonID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>
-                        <a href='delete-season.php?id=$seasonID'><i class='fa-solid fa-trash-can fa-xl'></i></a>
+                        <a href='#' onclick='confirmDeletion($seasonID)'><i class='fa-solid fa-trash-can fa-xl'></i></a>
                         <a href='add-teams-to-season.php?id=$seasonID' class='crud-add-button'>Dodaj drużyny</a>
                         <a href='delete-teams-from-season.php?id=$seasonID' class='crud-add-button'>Usun drużyny</a>
                     </td>

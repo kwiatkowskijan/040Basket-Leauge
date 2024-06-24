@@ -6,6 +6,7 @@ $connect = OpenCon();
 
 $isUpdate = false;
 $playerID = 0;
+$message = '';
 
 if (isset($_GET['id'])) {
     $playerID = $_GET['id'];
@@ -32,16 +33,14 @@ if (isset($_GET['id'])) {
             $position = $row["Position"];
             $teamID = $row["TeamID"];
         } else {
-            echo "Nie znaleziono rekordu";
+            $message = "Nie znaleziono rekordu";
         }
-    } else {
-        echo "Dodawanie";
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(isset($_POST["id"]) && $_POST["id"] > 0) {
+    if (isset($_POST["id"]) && $_POST["id"] > 0) {
         $isUpdate = true;
     }
 
@@ -55,16 +54,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $position = $_POST["Position"];
         $teamId = $_POST["TeamID"];
 
-        $sql = "UPDATE `players` SET `FirstName`=?, `LastName`=?, `Age`=?, `Height`=?, `Weight` =?, `Position` =?, `TeamID` =?  WHERE `PlayerID` = ?";
+        $sql = "UPDATE `players` SET `FirstName`=?, `LastName`=?, `BirthDate`=?, `Height`=?, `Weight` =?, `Position` =?, `TeamID` =?  WHERE `PlayerID` = ?";
 
         if ($stmt = mysqli_prepare($connect, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsii", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamId, $playerID);
+            mysqli_stmt_bind_param($stmt, "sssddsii", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamId, $playerID);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie zaktualizowano";
-                echo "<a href='players.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie zaktualizowano";
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -80,18 +78,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $teamID = $_POST["TeamID"];
 
 
-        $teamsSql = "INSERT INTO `players` (`FirstName`, `LastName`, `Age`, `Height`, `Weight`, `Position`, `TeamID`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $teamsSql = "INSERT INTO `players` (`FirstName`, `LastName`, `BirthDate`, `Height`, `Weight`, `Position`, `TeamID`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($connect, $teamsSql)) {
-            mysqli_stmt_bind_param($stmt, "ssiddsi", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamID);
+            mysqli_stmt_bind_param($stmt, "sssddsi", $firstName, $lastName, $birthDate, $height, $weight, $position, $teamID);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie dodano";
-                echo "<a href='players.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie dodano";
                 $playerID = mysqli_insert_id($connect);
                 $isUpdate = true;
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -106,6 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <title>Document</title>
 </head>
 
@@ -116,61 +114,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $teams = $connect->query($query);
     ?>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
 
-        <label>Imię</label><br>
-        <input type="text" name="FirstName" value="<?php echo $isUpdate ? $firstName : ''; ?>" required /><br><br>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-        <label>Nazwisko</label><br>
-        <input type="text" name="LastName" value="<?php echo $isUpdate ? $lastName : ''; ?>" required /><br><br>
+                <label>Imię</label><br>
+                <input type="text" name="FirstName" value="<?php echo $isUpdate ? $firstName : ''; ?>" required /><br><br>
 
-        <label>Data urodzenia</label><br>
-        <input type="date" name="BirthDate" value="<?php echo $isUpdate ? $birthDate : ''; ?>" required /><br><br>
+                <label>Nazwisko</label><br>
+                <input type="text" name="LastName" value="<?php echo $isUpdate ? $lastName : ''; ?>" required /><br><br>
 
-        <label>Pozycja</label><br>
-        <select name="Position" required>
-            <option value="Point Guard" <?php if ($isUpdate && $position == "Point Guard") {
-                                            echo "selected";
-                                        } ?>>Rozgrywający</option>
-            <option value="Shooting Guard" <?php if ($isUpdate && $position == "Shooting Guard") {
+                <label>Data urodzenia</label><br>
+                <input type="date" name="BirthDate" value="<?php echo $isUpdate ? $birthDate : ''; ?>" required /><br><br>
+
+                <label>Pozycja</label><br>
+                <select name="Position" required>
+                    <option value="Point Guard" <?php if ($isUpdate && $position == "Point Guard") {
+                                                    echo "selected";
+                                                } ?>>Rozgrywający</option>
+                    <option value="Shooting Guard" <?php if ($isUpdate && $position == "Shooting Guard") {
+                                                        echo "selected";
+                                                    } ?>>Rzucający obrońca</option>
+                    <option value="Small Forward" <?php if ($isUpdate && $position == "Small Forward") {
+                                                        echo "selected";
+                                                    } ?>>Niski skrzydłowy</option>
+                    <option value="Power Forward" <?php if ($isUpdate && $position == "Power Forward") {
+                                                        echo "selected";
+                                                    } ?>>Silny skrzydłowy</option>
+                    <option value="Center" <?php if ($isUpdate && $position == "Center") {
                                                 echo "selected";
-                                            } ?>>Rzucający obrońca</option>
-            <option value="Small Forward" <?php if ($isUpdate && $position == "Small Forward") {
-                                                echo "selected";
-                                            } ?>>Niski skrzydłowy</option>
-            <option value="Power Forward" <?php if ($isUpdate && $position == "Power Forward") {
-                                                echo "selected";
-                                            } ?>>Silny skrzydłowy</option>
-            <option value="Center" <?php if ($isUpdate && $position == "Center") {
-                                        echo "selected";
-                                    } ?>>Środkowy</option>
-        </select><br><br>
+                                            } ?>>Środkowy</option>
+                </select><br><br>
 
-        <label>Wzrost (m)</label>
-        <input type="number" name="Height" min="1" max="3" step=".01" value="<?php echo $isUpdate ? $height : ''; ?>" required /><br><br>
+                <label>Wzrost (m)</label>
+                <input type="number" name="Height" min="1" max="3" step=".01" value="<?php echo $isUpdate ? $height : ''; ?>" required /><br><br>
 
-        <label>Waga (kg)</label>
-        <input type="number" name="Weight" min="1" max="200" step=".5" value="<?php echo $isUpdate ? $weight : ''; ?>" required /><br><br>
+                <label>Waga (kg)</label>
+                <input type="number" name="Weight" min="1" max="200" step=".5" value="<?php echo $isUpdate ? $weight : ''; ?>" required /><br><br>
 
-        <label>Drużyna</label>
-        <select name="TeamID">
-            <?php
-            while ($row = $teams->fetch_assoc()) {
-                echo "<option value='" . $row['TeamID'] . "'";
-                if($isUpdate && $row['TeamID'] == $teamID) { echo "selected"; }
-                echo ">" . $row['TeamName'] . "</option>";
-            }
-            ?>
-        </select>
+                <label>Drużyna</label>
+                <select name="TeamID">
+                    <?php
+                    while ($row = $teams->fetch_assoc()) {
+                        echo "<option value='" . $row['TeamID'] . "'";
+                        if ($isUpdate && $row['TeamID'] == $teamID) {
+                            echo "selected";
+                        }
+                        echo ">" . $row['TeamName'] . "</option>";
+                    }
+                    ?>
+                </select>
 
-        <?php
-        if ($isUpdate) {
-            echo "<input type='hidden' name='id' value='" . $playerID . "' />";
-        }
-        ?>
-        <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
+                <?php
+                if ($isUpdate) {
+                    echo "<input type='hidden' name='id' value='" . $playerID . "' />";
+                }
+                ?>
+                <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
+                
+            </form>
 
-    </form>
+            <?php if ($message): ?>
+                <p><?php echo $message; ?></p>
+                <a href="players.php" class="crud-add-button">Wróć</a>
+            <?php endif; ?>
+
+        </div>
+    </div>
 
 </body>
 

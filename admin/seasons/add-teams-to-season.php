@@ -36,41 +36,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <title>Formularz dodawania drużyn</title>
 </head>
 
 <body>
 
-    <h2>Wybierz drużyny do dodania:</h2>
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <h2>Wybierz drużyny do dodania:</h2>
 
-        <?php
-        $sql = "SELECT `teams`.`TeamID`, `TeamName`\n"
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-            . "FROM `teams`\n"
+                <?php
+                $sql = "SELECT `teams`.`TeamID`, `TeamName`\n"
 
-            . "LEFT JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID` AND `teams_in_season`.`SeasonID` = $seasonID "
+                    . "FROM `teams`\n"
 
-            . "WHERE `teams_in_season`.`TeamID` IS NULL;";
+                    . "LEFT JOIN `teams_in_season` ON `teams`.`TeamID` = `teams_in_season`.`TeamID` AND `teams_in_season`.`SeasonID` = $seasonID "
 
-        $result = $connect->query($sql);
+                    . "WHERE `teams_in_season`.`TeamID` IS NULL;";
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<label>";
-                echo "<input type='checkbox' name='Teams[]' value='" . htmlspecialchars($row["TeamID"]) . "'>";
-                echo $row["TeamName"];
-                echo "</label><br>";
-            }
-        } else {
-            echo "Brak dostępnych drużyn.";
-        }
-        ?>
+                $result = $connect->query($sql);
 
-        <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
-        <button type="submit">Dodaj</button> <br>
-    </form>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<label>";
+                        echo "<input type='checkbox' name='Teams[]' value='" . htmlspecialchars($row["TeamID"]) . "'>";
+                        echo $row["TeamName"];
+                        echo "</label><br>";
+                    }
+                } else {
+                    echo "Brak dostępnych drużyn.";
+                }
+                ?>
+
+                <input type='hidden' name='id' value='<?php echo $seasonID; ?>' />
+                <button type="submit">Dodaj</button> <br>
+                <a href="./seasons.php">Wróć</a>
+            </form>
+        </div>
+    </div>
 
 </body>
+
 </html>

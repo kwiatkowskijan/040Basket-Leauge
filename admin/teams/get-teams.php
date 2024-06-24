@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 
         echo "
                 <tr>
-                    <td><img src='/040Basket-Leauge/assets/uploads/logos/$logo' width='50px' height='50px'/></td>
+                    <td><img src='/040Basket-Leauge/assets/uploads/$logo' width='50px'/></td>
                     <td>$name</td>
                     <td>
                         <a href='add-update-teams.php?id=$teamID'><i class='fa-solid fa-pen-to-square fa-xl'></i></a>

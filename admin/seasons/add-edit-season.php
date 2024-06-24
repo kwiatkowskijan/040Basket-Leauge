@@ -6,6 +6,7 @@ $connect = OpenCon();
 
 $isUpdate = false;
 $seasonID = 0;
+$message = '';
 
 if (isset($_GET['id'])) {
     $seasonID = $_GET['id'];
@@ -28,16 +29,14 @@ if (isset($_GET['id'])) {
             $startDate = $row["StartDate"];
             $endDate = $row["EndDate"];
         } else {
-            echo "Nie znaleziono rekordu";
+            $message = "Nie znaleziono rekordu";
         }
-    } else {
-        echo "Dodawanie";
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(isset($_POST["id"]) && $_POST["id"] > 0) {
+    if (isset($_POST["id"]) && $_POST["id"] > 0) {
         $isUpdate = true;
     }
 
@@ -53,10 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "sssi", $name, $startDate, $endDate, $seasonID);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie zaktualizowano";
-                echo "<a href='seasons.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie zaktualizowano";
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -73,12 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_stmt_bind_param($stmt, "sss", $name, $startDate, $endDate);
 
             if (mysqli_stmt_execute($stmt)) {
-                echo "Pomyślnie dodano";
-                echo "<a href='seasons.php' class='crud-add-button'>Wróć</a>";
+                $message = "Pomyślnie dodano";
                 $playerID = mysqli_insert_id($connect);
                 $isUpdate = true;
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $message = "Oops! Something went wrong. Please try again later.";
             }
         }
 
@@ -93,30 +90,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/040Basket-Leauge/assets/styles/style.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="admin-page-container">
+        <?php include '../layouts/admin-nav.php'; ?>
+        <div class="admin-page-content">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-        <label>Nazwa</label><br>
-        <input type="text" name="Name" value="<?php echo $isUpdate ? $name : ''; ?>" required /><br><br>
+                <label>Nazwa</label><br>
+                <input type="text" name="Name" value="<?php echo $isUpdate ? $name : ''; ?>" required /><br><br>
 
-        <label>Data startu</label><br>
-        <input type="date" name="StartDate" value="<?php echo $isUpdate ? $startDate : ''; ?>" required /><br><br>
+                <label>Data startu</label><br>
+                <input type="date" name="StartDate" value="<?php echo $isUpdate ? $startDate : ''; ?>" required /><br><br>
 
-        <label>Data końca</label><br>
-        <input type="date" name="EndDate" value="<?php echo $isUpdate ? $endDate : ''; ?>" required /><br><br>
+                <label>Data końca</label><br>
+                <input type="date" name="EndDate" value="<?php echo $isUpdate ? $endDate : ''; ?>" required /><br><br>
 
-        <?php
-        if ($isUpdate) {
-            echo "<input type='hidden' name='id' value='" . $seasonID . "' />";
-        }
-        ?>
-        <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
+                <?php
+                if ($isUpdate) {
+                    echo "<input type='hidden' name='id' value='" . $seasonID . "' />";
+                }
+                ?>
+                <button type="submit"><?php echo $isUpdate ? 'Aktualizuj' : 'Dodaj'; ?></button>
 
-    </form>
+            </form>
+
+            <?php if ($message): ?>
+                <p><?php echo $message; ?></p>
+                <a href="seasons.php" class="crud-add-button">Wróć</a>
+            <?php endif; ?>
+
+        </div>
+    </div>
 
 </body>
 
